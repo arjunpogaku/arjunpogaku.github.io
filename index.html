@@ -53,9 +53,54 @@
         .research-links a:hover {
             background-color: #004999;
         }
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode h1, body.dark-mode h3 {
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .profile-header img {
+            border: 2px solid #f0f0f0;
+        }
+
+        body.dark-mode .research-links a {
+            background-color: #444;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .research-links a:hover {
+            background-color: #222;
+        }
+
+        /* Dark mode toggle button */
+        #darkModeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        #darkModeToggle:hover {
+            background-color: #004999;
+        }
     </style>
 </head>
 <body>
+
+<!-- Dark mode toggle button -->
+<button id="darkModeToggle">🌙 Dark Mode</button>
 
 <nav>
     <a href="about.html">About</a>
