@@ -53,6 +53,7 @@
         .research-links a:hover {
             background-color: #004999;
         }
+
         /* Dark mode styles */
         body.dark-mode {
             background-color: #1e1e1e;
@@ -121,7 +122,7 @@
     </div>
 </div>
 
-<!-- Your About content will go here -->
+<!-- Your About content -->
 <div class="about-content">
     <!-- Add your biography, work experience, or research summary here -->
 </div>
@@ -129,6 +130,31 @@
 <footer>
     &copy; 2025 Arjun Chakravarthi Pogaku
 </footer>
+
+<!-- Dark mode script -->
+<script>
+    const toggleButton = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Load saved mode from localStorage
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        toggleButton.textContent = '☀️ Light Mode';
+    }
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+
+        // Save preference in localStorage
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+            toggleButton.textContent = '☀️ Light Mode';
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+            toggleButton.textContent = '🌙 Dark Mode';
+        }
+    });
+</script>
 
 </body>
 </html>
