@@ -12,9 +12,10 @@
         .profile-header {
             display: flex;
             align-items: center;
+            justify-content: center; /* centers horizontally */
             gap: 20px;
             margin-bottom: 40px;
-            flex-wrap: wrap;
+            text-align: center; /* ensures text also centers */
         }
 
         .profile-header img {
@@ -28,12 +29,21 @@
         .profile-info h1 {
             margin: 0;
             font-size: 2em;
+            justify-content: center;
             color: #003366;
         }
+        
+        .profile-info h2 {
+            margin: 0;
+            font-size: 2em;
+            justify-content: center;
+            color: #003366;
+        }       
 
         .profile-info h3 {
             margin: 5px 0;
             font-weight: normal;
+            justify-content: center;
             color: #555;
         }
 
@@ -75,10 +85,17 @@
             margin: 40px 0;
         }
 
-        h2 {
-            text-align: left;
+        h1 {
+            text-align: center;
             color: #003366;
-            margin-top: 40px;
+            margin-top: 20px;
+        }
+        
+
+        h2 {
+            text-align: center;
+            color: #003366;
+            margin-top: 20px;
         }
 
         ul {
@@ -135,7 +152,6 @@
 <button id="darkModeToggle">🌙 Dark Mode</button>
 
 <nav>
-    <a href="about.html">About</a>
     <a href="publications.html">Publications</a>
 </nav>
 
@@ -178,6 +194,18 @@
     <li><b>Sep 2023 - Jan 2025:</b> Assistant Professor, Electronics and Communication Engineering - Madanapalle Institute of Technology & Science.</li>
     <li><b>Oct 2020 - Jul 2023:</b> Research Assistant, WICOM Lab, Department of Computer Science and Information Engineering, Asia University, Taiwan.</li>
     <li><b>Feb 2019 - Apr 2019:</b> Intern, Department of Bioinformatics and Medical Engineering, Asia University, Taiwan.</li>
+</ul>
+
+<hr>
+
+<!-- Education section -->
+<h2>Education</h2>
+<ul>
+    <li><b>2025 - Present:</b> Ph.D. in Computer and Information Systems - University of Aizu, Japan.</li>
+    <li><b>2019 - 2021:</b> Master of Engineering- Asia University, Taiwan.</li>
+    <li><b>2015 - 2019:</b> Bachelor of Technology in Electronics and Communication Engineering - Madanapalle Institute of Technology & Science, India.</li>
+</ul>
+
 </ul>
 
 <footer>
