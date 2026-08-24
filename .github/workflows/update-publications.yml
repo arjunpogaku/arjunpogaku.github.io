@@ -1,0 +1,37 @@
+name: Update publications
+
+on:
+  schedule:
+    # Every Monday at 06:00 UTC
+    - cron: "0 6 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Regenerate publications.html from ORCID + Crossref
+        run: python3 scripts/update_publications.py
+
+      - name: Commit changes if any
+        run: |
+          if git diff --quiet -- publications.html; then
+            echo "No publication changes detected."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add publications.html
+          git commit -m "Auto-update publications from ORCID/Crossref"
+          git push
