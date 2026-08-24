@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graphs + LLMs for Traffic Analysis — Arjun Chakravarthi Pogaku</title>
+    <meta name="description" content="A symbolic knowledge graph framework for spatiotemporal traffic congestion analysis, paired with a domain-assisted LLM that turns natural-language questions into reliable Cypher queries.">
+
+    <meta property="og:title" content="Knowledge Graphs + LLMs for Traffic Analysis">
+    <meta property="og:description" content="Turning high-frequency traffic congestion data into a queryable knowledge graph, with a domain-constrained LLM for natural-language querying.">
+    <meta property="og:image" content="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b3d63'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Georgia,serif' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<button id="darkModeToggle">🌙 Dark Mode</button>
+
+<header class="hero">
+    <div class="hero-inner">
+        <img src="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg" alt="Arjun Chakravarthi Pogaku">
+        <div class="hero-text">
+            <h1>Arjun Chakravarthi Pogaku</h1>
+            <p class="tagline">Researcher in Pattern Mining, Data Science &amp; LLMs</p>
+            <p class="affiliation">Ph.D. Candidate, University of Aizu, Japan</p>
+            <div class="research-links">
+                <a href="https://scholar.google.com/citations?user=VZJc8QoAAAAJ&hl=en" target="_blank">
+                    <i class="fa-brands fa-google"></i> Google Scholar
+                </a>
+                <a href="https://www.researchgate.net/profile/Arjun_Pogaku2" target="_blank">
+                    <i class="fab fa-researchgate"></i> ResearchGate
+                </a>
+                <a href="https://github.com/arjunpogaku" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/arjunpogaku-research" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:arjun.chakravarthip@gmail.com">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="site-nav">
+    <a href="index.html">About</a>
+    <a href="publications.html">Publications</a>
+    <a href="research.html" class="active">Research</a>
+</nav>
+
+<section class="project-hero">
+    <span class="eyebrow">Featured Research</span>
+    <h1>Turning Traffic Data into Queryable Knowledge Graphs</h1>
+    <p class="thesis">
+        Large-scale transportation networks continuously generate massive spatiotemporal data —
+        most research just predicts what happens next. This work builds a symbolic knowledge graph
+        that captures <em>why</em>, and a domain-constrained LLM that lets you ask it directly.
+    </p>
+
+    <div class="kg-illustration-wrap">
+        <svg class="kg-illustration" viewBox="0 0 960 480" role="img" aria-label="Diagram: a knowledge graph of road segments, linked by spatial and temporal relationships and colored by congestion level, feeds a domain-assisted LLM. The LLM grounds a natural-language question in the graph, generates a Cypher query, and returns an answer.">
+            <defs>
+                <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                    <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--accent)"></path>
+                </marker>
+                <marker id="arrowhead-muted" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+                    <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--text-muted)"></path>
+                </marker>
+            </defs>
+
+            <!-- Panel: Knowledge Graph -->
+            <rect x="20" y="20" width="440" height="440" rx="16" fill="var(--surface)" stroke="var(--border)"></rect>
+            <text x="44" y="52" font-family="var(--font-body)" font-size="12" font-weight="700" letter-spacing="1.2" fill="var(--accent)">KNOWLEDGE GRAPH</text>
+            <text x="44" y="72" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Road segments, linked by how they relate</text>
+
+            <!-- Graph edges: spatial (solid) -->
+            <g stroke="var(--text-muted)" stroke-opacity="0.45" stroke-width="2.25">
+                <line x1="120" y1="160" x2="270" y2="125"></line>
+                <line x1="120" y1="160" x2="200" y2="260"></line>
+                <line x1="200" y1="260" x2="150" y2="345"></line>
+                <line x1="150" y1="345" x2="290" y2="385"></line>
+                <line x1="290" y1="385" x2="410" y2="325"></line>
+                <line x1="200" y1="260" x2="290" y2="385"></line>
+            </g>
+            <!-- Graph edges: temporal (dashed) -->
+            <g stroke="var(--accent)" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="5,4">
+                <line x1="270" y1="125" x2="365" y2="195"></line>
+                <line x1="200" y1="260" x2="365" y2="195"></line>
+                <line x1="365" y1="195" x2="410" y2="325"></line>
+            </g>
+
+            <!-- Focal-node halo -->
+            <circle cx="365" cy="195" r="26" fill="none" stroke="var(--flow-congested)" stroke-opacity="0.3" stroke-width="3"></circle>
+
+            <!-- Graph nodes -->
+            <g stroke="var(--surface)" stroke-width="3.5">
+                <circle cx="120" cy="160" r="13" fill="var(--flow-free)"></circle>
+                <circle cx="270" cy="125" r="13" fill="var(--flow-moderate)"></circle>
+                <circle cx="200" cy="260" r="13" fill="var(--flow-free)"></circle>
+                <circle cx="365" cy="195" r="16" fill="var(--flow-congested)"></circle>
+                <circle cx="150" cy="345" r="13" fill="var(--flow-moderate)"></circle>
+                <circle cx="290" cy="385" r="13" fill="var(--flow-free)"></circle>
+                <circle cx="410" cy="325" r="13" fill="var(--flow-moderate)"></circle>
+            </g>
+            <text x="365" y="235" text-anchor="middle" font-family="var(--font-mono)" font-size="12" font-weight="600" fill="var(--text)">Segment 27</text>
+            <text x="365" y="250" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" fill="var(--text-muted)">the segment being asked about</text>
+
+            <!-- Panel: Query Layer -->
+            <rect x="480" y="20" width="460" height="440" rx="16" fill="var(--surface)" stroke="var(--border)"></rect>
+            <text x="504" y="52" font-family="var(--font-body)" font-size="12" font-weight="700" letter-spacing="1.2" fill="var(--accent)">QUERY LAYER</text>
+            <text x="504" y="72" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">A question, grounded and answered</text>
+
+            <!-- Connector: graph -> question -->
+            <line x1="391" y1="195" x2="498" y2="118" stroke="var(--text-muted)" stroke-width="1.75" stroke-dasharray="4,3" marker-end="url(#arrowhead-muted)"></line>
+
+            <!-- Box A: the question -->
+            <rect x="500" y="90" width="290" height="56" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
+            <text x="518" y="112" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">YOU ASK</text>
+            <text x="518" y="134" font-family="var(--font-heading)" font-style="italic" font-size="15" fill="var(--text)">"Where's it congested at 5 PM?"</text>
+
+            <!-- Connector: question -> LLM chip -->
+            <line x1="645" y1="146" x2="645" y2="164" stroke="var(--accent)" stroke-width="1.75" marker-end="url(#arrowhead)"></line>
+
+            <!-- Box B: LLM chip -->
+            <rect x="500" y="166" width="290" height="70" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></rect>
+            <text x="518" y="188" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">DKB-ASSISTED LLM</text>
+            <text x="518" y="212" font-family="var(--font-body)" font-size="13" fill="var(--text)">Schema + domain rules ground the</text>
+            <text x="518" y="228" font-family="var(--font-body)" font-size="13" fill="var(--text)">question before it becomes a query.</text>
+
+            <!-- Connector: chip -> code panel -->
+            <line x1="645" y1="236" x2="645" y2="254" stroke="var(--accent)" stroke-width="1.75" marker-end="url(#arrowhead)"></line>
+
+            <!-- Box C: code panel -->
+            <rect x="500" y="256" width="290" height="100" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
+            <text x="518" y="278" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">GENERATED CYPHER</text>
+            <text x="518" y="302" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">MATCH</tspan> (s)-[:CONGESTED_AT]-&gt;(t)</text>
+            <text x="518" y="324" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">WHERE</tspan> t.hour = 17</text>
+            <text x="518" y="346" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">RETURN</tspan> s.name, t.level</text>
+
+            <!-- Connector: code -> answer -->
+            <line x1="645" y1="356" x2="645" y2="374" stroke="var(--accent)" stroke-width="1.75" marker-end="url(#arrowhead)"></line>
+
+            <!-- Box D: answer -->
+            <rect x="500" y="376" width="290" height="74" rx="12" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"></rect>
+            <text x="518" y="398" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--accent)">ANSWER</text>
+            <text x="518" y="421" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">"Segment 27 is congested at 5 PM,</text>
+            <text x="518" y="439" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">based on nearby segments and time."</text>
+        </svg>
+
+        <div class="kg-legend">
+            <span><span class="dot" style="background:var(--flow-free)"></span>Free flow</span>
+            <span><span class="dot" style="background:var(--flow-moderate)"></span>Moderate</span>
+            <span><span class="dot" style="background:var(--flow-congested)"></span>Congested</span>
+            <span><span class="line-swatch solid"></span>Spatial relationship</span>
+            <span><span class="line-swatch dashed"></span>Temporal relationship</span>
+        </div>
+    </div>
+
+    <div class="project-links">
+        <a class="primary" href="https://doi.org/10.1007/978-981-92-2885-0_3" target="_blank"><i class="fa-solid fa-file-lines"></i> Read the Paper</a>
+        <a class="secondary" href="https://github.com/arjunpogaku/traffic_kgs" target="_blank"><i class="fab fa-github"></i> View Code</a>
+    </div>
+</section>
+
+<p class="pull-quote">Most traffic research chases <span>better predictions</span>. This work asks what happens if the data can <span>explain itself</span>.</p>
+
+<h2 class="section-title">How it works</h2>
+
+<div class="pipeline">
+    <div class="pipeline-stage">
+        <span class="stage-tag">01 · data</span>
+        <h4>Spatiotemporal data</h4>
+        <p>High-frequency, multivariate congestion readings across a road network, hour by hour.</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage">
+        <span class="stage-tag">02 · graph</span>
+        <h4>Symbolic construction</h4>
+        <p>Deterministic rules translate readings into nodes and edges — spatial, temporal, and congestion-level relationships.</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage">
+        <span class="stage-tag">03 · rules</span>
+        <h4>Domain knowledge base</h4>
+        <p>Schema constraints, domain rules, and exemplar queries ground the system in what's actually true about the graph.</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage">
+        <span class="stage-tag">04 · query</span>
+        <h4>DKB-assisted LLM</h4>
+        <p>Constrained generation produces valid Cypher instead of guesses — schema-aware and rule-checked.</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage">
+        <span class="stage-tag">05 · answer</span>
+        <h4>Natural language</h4>
+        <p>Results return as plain-language answers, traceable back to the exact graph relationships that produced them.</p>
+    </div>
+</div>
+
+<div class="callout">
+    <strong>Why interpretability matters:</strong> a purely predictive model tells you traffic will be bad —
+    not why, or where the pattern came from. By grounding every query in an explicit graph of spatial, temporal,
+    and congestion relationships, each answer traces back to the data that produced it. In evaluation on
+    real-world traffic data, the DKB-assisted LLM produced significantly more accurate and relevant answers
+    than general-purpose LLMs prompted directly on the same data.
+</div>
+
+<footer>
+    &copy; 2025 Arjun Chakravarthi Pogaku
+</footer>
+
+<script>
+    const toggleButton = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        toggleButton.textContent = '☀️ Light Mode';
+    }
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+            toggleButton.textContent = '☀️ Light Mode';
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+            toggleButton.textContent = '🌙 Dark Mode';
+        }
+    });
+</script>
+
+</body>
+</html>

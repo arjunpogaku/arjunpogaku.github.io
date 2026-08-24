@@ -29,9 +29,24 @@ AUTHOR_FAMILY_NAME = "Pogaku"
 EXTRA_DOIS = [
     "10.1007/s41060-026-01237-z",
     "10.1007/978-981-92-2885-0_3",
-    "10.1109/MCSoC67473.2025.00024",
-    "10.1109/BigData66926.2025.11402218",
+    "10.1109/mcsoc67473.2025.00024",
+    "10.1109/bigdata66926.2025.11402218",
 ]
+
+# Supplementary buttons (code repo, live demo, etc.) shown under specific
+# publications, keyed by lowercase DOI (Crossref normalizes DOIs to lowercase
+# in its responses, so lookups must match that).
+EXTRA_LINKS = {
+    "10.1007/978-981-92-2885-0_3": [
+        ("fab fa-github", "Code", "https://github.com/arjunpogaku/traffic_kgs"),
+    ],
+    "10.1007/s41060-026-01237-z": [
+        ("fab fa-github", "Code", "https://github.com/MadhaviPalla/PAMI-GPT"),
+    ],
+    "10.1109/mcsoc67473.2025.00024": [
+        ("fa-solid fa-robot", "Try PAMI-GPT", "https://chatgpt.com/g/g-673d78e2ed608191a67fe61be430c641-pami"),
+    ],
+}
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLICATIONS_HTML = REPO_ROOT / "publications.html"
@@ -160,12 +175,24 @@ def badge_for(work):
     return CROSSREF_TYPE_TO_BADGE.get(crossref_type, "Publication")
 
 
+def render_extra_links(doi):
+    links = EXTRA_LINKS.get(doi.lower())
+    if not links:
+        return ""
+    buttons = "\n".join(
+        f'            <a href="{html.escape(url)}" target="_blank"><i class="{icon}"></i> {html.escape(label)}</a>'
+        for icon, label, url in links
+    )
+    return f'\n        <div class="pub-extra-links">\n{buttons}\n        </div>'
+
+
 def render_pub_card(work, badge):
     title = html.escape(work.get("title", [""])[0])
     authors = format_authors(work.get("author", []))
     venue = html.escape(format_venue(work))
     doi = work.get("DOI", "")
     link = f"https://doi.org/{doi}" if doi else work.get("URL", "")
+    extra_links = render_extra_links(doi)
 
     return f"""    <div class="pub-card">
         <span class="pub-type">{html.escape(badge)}</span>
@@ -174,7 +201,7 @@ def render_pub_card(work, badge):
         </div>
         <span class="pub-venue">
             <a href="{html.escape(link)}" class="paper-link" target="_blank">{venue}</a>
-        </span>
+        </span>{extra_links}
     </div>"""
 
 
@@ -192,7 +219,8 @@ def main():
         print(f"Failed to fetch ORCID works: {e}", file=sys.stderr)
         sys.exit(1)
 
-    all_dois = list(dict.fromkeys(dois + [d for d in EXTRA_DOIS if d not in dois]))
+    dois_lower = {d.lower() for d in dois}
+    all_dois = list(dict.fromkeys(dois + [d for d in EXTRA_DOIS if d.lower() not in dois_lower]))
 
     if not all_dois:
         print("No DOIs found; leaving publications.html untouched.")
