@@ -206,7 +206,7 @@ def render_pub_card(work, badge):
 
 
 def render_year_group(year, cards):
-    out = ['<div class="pub-year-group">', f"    <h3>{year}</h3>", ""]
+    out = ['<div class="pub-year-group reveal">', f"    <h3>{year}</h3>", ""]
     out.extend(cards)
     out.append("</div>")
     return "\n".join(out)

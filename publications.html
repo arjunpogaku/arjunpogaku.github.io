@@ -56,10 +56,23 @@
 
 <h2 class="section-title">Publications</h2>
 
+<div class="pub-controls">
+    <input type="search" id="pubSearch" placeholder="Search by title or author…" aria-label="Search publications">
+    <div class="pub-filter-pills" id="pubFilterPills">
+        <button class="pill active" data-type="all" type="button">All</button>
+        <button class="pill" data-type="Journal" type="button">Journal</button>
+        <button class="pill" data-type="Conference" type="button">Conference</button>
+        <button class="pill" data-type="Book Chapter" type="button">Book Chapter</button>
+        <button class="pill" data-type="Master Thesis" type="button">Thesis</button>
+    </div>
+</div>
+
+<p id="pubNoResults" class="pub-no-results" style="display:none;">No publications match your search — try a different term or filter.</p>
+
 <!-- The block below is auto-generated from ORCID + Crossref by scripts/update_publications.py
      via a scheduled GitHub Action. Manual edits inside the markers will be overwritten. -->
 <!-- AUTO-PUBLICATIONS:START -->
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2027</h3>
 
     <div class="pub-card">
@@ -76,7 +89,7 @@
     </div>
 </div>
 
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2026</h3>
 
     <div class="pub-card">
@@ -93,7 +106,7 @@
     </div>
 </div>
 
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2025</h3>
 
     <div class="pub-card">
@@ -146,7 +159,7 @@
     </div>
 </div>
 
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2023</h3>
 
     <div class="pub-card">
@@ -169,7 +182,7 @@
     </div>
 </div>
 
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2022</h3>
 
     <div class="pub-card">
@@ -183,7 +196,7 @@
     </div>
 </div>
 
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2021</h3>
 
     <div class="pub-card">
@@ -215,7 +228,7 @@
     </div>
 </div>
 
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2020</h3>
 
     <div class="pub-card">
@@ -231,9 +244,9 @@
 
 <!-- AUTO-PUBLICATIONS:END -->
 
-<h2 class="section-title">Thesis</h2>
+<h2 class="section-title reveal">Thesis</h2>
 
-<div class="pub-year-group">
+<div class="pub-year-group reveal">
     <h3>2021</h3>
 
     <div class="pub-card">
@@ -253,26 +266,7 @@
     &copy; 2025 Arjun Chakravarthi Pogaku
 </footer>
 
-<script>
-    const toggleButton = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        body.classList.add('dark-mode');
-        toggleButton.textContent = '☀️ Light Mode';
-    }
-
-    toggleButton.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
-            toggleButton.textContent = '☀️ Light Mode';
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
-            toggleButton.textContent = '🌙 Dark Mode';
-        }
-    });
-</script>
+<script src="script.js" defer></script>
 
 </body>
 </html>

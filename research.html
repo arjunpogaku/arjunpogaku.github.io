@@ -95,21 +95,23 @@
                 <line x1="365" y1="195" x2="410" y2="325"></line>
             </g>
 
-            <!-- Focal-node halo -->
-            <circle cx="365" cy="195" r="26" fill="none" stroke="var(--flow-congested)" stroke-opacity="0.3" stroke-width="3"></circle>
+            <!-- Focal node (clickable) -->
+            <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about the focal segment" data-detail="Segment 27 is the road segment the question is about. Its place in the graph — which segments it's spatially adjacent to, which share its time-of-day pattern — is what makes the answer explainable instead of just predicted.">
+                <circle cx="365" cy="195" r="26" fill="none" stroke="var(--flow-congested)" stroke-opacity="0.3" stroke-width="3"></circle>
+                <circle cx="365" cy="195" r="16" fill="var(--flow-congested)" stroke="var(--surface)" stroke-width="3.5"></circle>
+                <text x="365" y="235" text-anchor="middle" font-family="var(--font-mono)" font-size="12" font-weight="600" fill="var(--text)">Segment 27</text>
+                <text x="365" y="250" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" fill="var(--text-muted)">the segment being asked about</text>
+            </g>
 
-            <!-- Graph nodes -->
+            <!-- Other graph nodes -->
             <g stroke="var(--surface)" stroke-width="3.5">
                 <circle cx="120" cy="160" r="13" fill="var(--flow-free)"></circle>
                 <circle cx="270" cy="125" r="13" fill="var(--flow-moderate)"></circle>
                 <circle cx="200" cy="260" r="13" fill="var(--flow-free)"></circle>
-                <circle cx="365" cy="195" r="16" fill="var(--flow-congested)"></circle>
                 <circle cx="150" cy="345" r="13" fill="var(--flow-moderate)"></circle>
                 <circle cx="290" cy="385" r="13" fill="var(--flow-free)"></circle>
                 <circle cx="410" cy="325" r="13" fill="var(--flow-moderate)"></circle>
             </g>
-            <text x="365" y="235" text-anchor="middle" font-family="var(--font-mono)" font-size="12" font-weight="600" fill="var(--text)">Segment 27</text>
-            <text x="365" y="250" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" fill="var(--text-muted)">the segment being asked about</text>
 
             <!-- Panel: Query Layer -->
             <rect x="480" y="20" width="460" height="440" rx="16" fill="var(--surface)" stroke="var(--border)"></rect>
@@ -120,37 +122,45 @@
             <line x1="391" y1="195" x2="498" y2="118" stroke="var(--text-muted)" stroke-width="1.75" stroke-dasharray="4,3" marker-end="url(#arrowhead-muted)"></line>
 
             <!-- Box A: the question -->
-            <rect x="500" y="90" width="290" height="56" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
-            <text x="518" y="112" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">YOU ASK</text>
-            <text x="518" y="134" font-family="var(--font-heading)" font-style="italic" font-size="15" fill="var(--text)">"Where's it congested at 5 PM?"</text>
+            <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about asking a question" data-detail="A person asks in plain English. No knowledge of Cypher or the graph schema is required — that's the point of the domain-assisted layer that follows.">
+                <rect x="500" y="90" width="290" height="56" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
+                <text x="518" y="112" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">YOU ASK</text>
+                <text x="518" y="134" font-family="var(--font-heading)" font-style="italic" font-size="15" fill="var(--text)">"Where's it congested at 5 PM?"</text>
+            </g>
 
             <!-- Connector: question -> LLM chip -->
             <line x1="645" y1="146" x2="645" y2="164" stroke="var(--accent)" stroke-width="1.75" marker-end="url(#arrowhead)"></line>
 
             <!-- Box B: LLM chip -->
-            <rect x="500" y="166" width="290" height="70" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></rect>
-            <text x="518" y="188" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">DKB-ASSISTED LLM</text>
-            <text x="518" y="212" font-family="var(--font-body)" font-size="13" fill="var(--text)">Schema + domain rules ground the</text>
-            <text x="518" y="228" font-family="var(--font-body)" font-size="13" fill="var(--text)">question before it becomes a query.</text>
+            <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about the DKB-assisted LLM" data-detail="The LLM doesn't see the raw graph directly. It sees the question plus a domain knowledge base — schema constraints, traffic-specific rules, and exemplar queries — that keep the generated Cypher valid and grounded.">
+                <rect x="500" y="166" width="290" height="70" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></rect>
+                <text x="518" y="188" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">DKB-ASSISTED LLM</text>
+                <text x="518" y="212" font-family="var(--font-body)" font-size="13" fill="var(--text)">Schema + domain rules ground the</text>
+                <text x="518" y="228" font-family="var(--font-body)" font-size="13" fill="var(--text)">question before it becomes a query.</text>
+            </g>
 
             <!-- Connector: chip -> code panel -->
             <line x1="645" y1="236" x2="645" y2="254" stroke="var(--accent)" stroke-width="1.75" marker-end="url(#arrowhead)"></line>
 
             <!-- Box C: code panel -->
-            <rect x="500" y="256" width="290" height="100" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
-            <text x="518" y="278" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">GENERATED CYPHER</text>
-            <text x="518" y="302" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">MATCH</tspan> (s)-[:CONGESTED_AT]-&gt;(t)</text>
-            <text x="518" y="324" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">WHERE</tspan> t.hour = 17</text>
-            <text x="518" y="346" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">RETURN</tspan> s.name, t.level</text>
+            <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about the generated Cypher query" data-detail="This is a real, syntactically valid Cypher query — schema-checked before it ever runs, not a free-form guess from the model.">
+                <rect x="500" y="256" width="290" height="100" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
+                <text x="518" y="278" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">GENERATED CYPHER</text>
+                <text x="518" y="302" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">MATCH</tspan> (s)-[:CONGESTED_AT]-&gt;(t)</text>
+                <text x="518" y="324" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">WHERE</tspan> t.hour = 17</text>
+                <text x="518" y="346" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">RETURN</tspan> s.name, t.level</text>
+            </g>
 
             <!-- Connector: code -> answer -->
             <line x1="645" y1="356" x2="645" y2="374" stroke="var(--accent)" stroke-width="1.75" marker-end="url(#arrowhead)"></line>
 
             <!-- Box D: answer -->
-            <rect x="500" y="376" width="290" height="74" rx="12" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"></rect>
-            <text x="518" y="398" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--accent)">ANSWER</text>
-            <text x="518" y="421" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">"Segment 27 is congested at 5 PM,</text>
-            <text x="518" y="439" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">based on nearby segments and time."</text>
+            <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about the answer" data-detail="The query runs against the real graph. Every claim in the answer is traceable to an actual node or relationship — not a hallucinated summary.">
+                <rect x="500" y="376" width="290" height="74" rx="12" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"></rect>
+                <text x="518" y="398" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--accent)">ANSWER</text>
+                <text x="518" y="421" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">"Segment 27 is congested at 5 PM,</text>
+                <text x="518" y="439" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">based on nearby segments and time."</text>
+            </g>
         </svg>
 
         <div class="kg-legend">
@@ -160,6 +170,8 @@
             <span><span class="line-swatch solid"></span>Spatial relationship</span>
             <span><span class="line-swatch dashed"></span>Temporal relationship</span>
         </div>
+
+        <p id="kgDetail" class="kg-detail">Click any highlighted part of the diagram to learn more about it.</p>
     </div>
 
     <div class="project-links">
@@ -168,11 +180,11 @@
     </div>
 </section>
 
-<p class="pull-quote">Most traffic research chases <span>better predictions</span>. This work asks what happens if the data can <span>explain itself</span>.</p>
+<p class="pull-quote reveal">Most traffic research chases <span>better predictions</span>. This work asks what happens if the data can <span>explain itself</span>.</p>
 
-<h2 class="section-title">How it works</h2>
+<h2 class="section-title reveal">How it works</h2>
 
-<div class="pipeline">
+<div class="pipeline reveal">
     <div class="pipeline-stage">
         <span class="stage-tag">01 · data</span>
         <h4>Spatiotemporal data</h4>
@@ -204,7 +216,7 @@
     </div>
 </div>
 
-<div class="callout">
+<div class="callout reveal">
     <strong>Why interpretability matters:</strong> a purely predictive model tells you traffic will be bad —
     not why, or where the pattern came from. By grounding every query in an explicit graph of spatial, temporal,
     and congestion relationships, each answer traces back to the data that produced it. In evaluation on
@@ -216,26 +228,7 @@
     &copy; 2025 Arjun Chakravarthi Pogaku
 </footer>
 
-<script>
-    const toggleButton = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        body.classList.add('dark-mode');
-        toggleButton.textContent = '☀️ Light Mode';
-    }
-
-    toggleButton.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
-            toggleButton.textContent = '☀️ Light Mode';
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
-            toggleButton.textContent = '🌙 Dark Mode';
-        }
-    });
-</script>
+<script src="script.js" defer></script>
 
 </body>
 </html>

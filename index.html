@@ -55,8 +55,8 @@
     <a href="research.html">Research</a>
 </nav>
 
-<h2 class="section-title">Biography</h2>
-<div class="about-content">
+<h2 class="section-title reveal">Biography</h2>
+<div class="about-content reveal">
     <p>Arjun Chakravarthi Pogaku, born in 1997 in Madanapalle, Andhra Pradesh, India, is a dedicated researcher working at the intersection of Pattern Mining, Data Science, large language models (LLMs), and Wireless Communications. He is currently pursuing his Ph.D. in the Graduate Department of Computer and Information Systems at the University of Aizu, Japan, under the supervision of Dr. Uday Kiran RAGE.</p>
 
     <p>Arjun's current research focuses on developing intelligent frameworks capable of uncovering meaningful, uncertain, and time-dependent patterns from large-scale real-world datasets. In parallel, he is working on building an LLM-based framework to enhance large-scale data analysis and knowledge discovery.</p>
@@ -64,8 +64,8 @@
     <p>Previously, Arjun has contributed to cutting-edge work in Wireless Communications and Reconfigurable Intelligent Surfaces (RIS) as part of the WICOM Lab at Asia University. He has also served as an Assistant Professor in the Department of Electronics and Communication Engineering at the Madanapalle Institute of Technology and Science (MITS), India.</p>
 </div>
 
-<h2 class="section-title">Work Experience</h2>
-<ul class="timeline">
+<h2 class="section-title reveal">Work Experience</h2>
+<ul class="timeline reveal">
     <li>
         <span class="period">Sep 2023 – Jan 2025</span>
         <span class="role">Assistant Professor, Electronics and Communication Engineering</span>
@@ -83,8 +83,8 @@
     </li>
 </ul>
 
-<h2 class="section-title">Education</h2>
-<ul class="timeline">
+<h2 class="section-title reveal">Education</h2>
+<ul class="timeline reveal">
     <li>
         <span class="period">2025 – Present</span>
         <span class="role">Ph.D. in Computer and Information Systems</span>
@@ -106,26 +106,7 @@
     &copy; 2025 Arjun Chakravarthi Pogaku
 </footer>
 
-<script>
-    const toggleButton = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        body.classList.add('dark-mode');
-        toggleButton.textContent = '☀️ Light Mode';
-    }
-
-    toggleButton.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
-            toggleButton.textContent = '☀️ Light Mode';
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
-            toggleButton.textContent = '🌙 Dark Mode';
-        }
-    });
-</script>
+<script src="script.js" defer></script>
 
 </body>
 </html>
