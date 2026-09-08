@@ -24,14 +24,19 @@ jobs:
       - name: Regenerate publications.html from ORCID + Crossref
         run: python3 scripts/update_publications.py
 
+      # Keeps ?v= hashes on style.css and script.js in step with their
+      # contents, so a cached stylesheet can never be paired with newer HTML.
+      - name: Stamp asset hashes
+        run: python3 scripts/stamp_assets.py
+
       - name: Commit changes if any
         run: |
-          if git diff --quiet -- publications.html; then
-            echo "No publication changes detected."
+          if git diff --quiet -- '*.html'; then
+            echo "No publication or asset changes detected."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add publications.html
+          git add -- '*.html'
           git commit -m "Auto-update publications from ORCID/Crossref"
           git push
