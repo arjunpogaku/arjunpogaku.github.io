@@ -293,10 +293,22 @@ def render_extra_links(doi):
     if not links:
         return ""
     buttons = "\n".join(
-        f'            <a href="{html.escape(url)}" target="_blank"><i class="{icon}"></i> {html.escape(label)}</a>'
+        f'                <a href="{html.escape(url)}" target="_blank"><i class="{icon}"></i> {html.escape(label)}</a>'
         for icon, label, url in links
     )
-    return f'\n        <div class="pub-extra-links">\n{buttons}\n        </div>'
+    return f'\n            <div class="pub-extra-links">\n{buttons}\n            </div>'
+
+
+def render_card_footer(work, doi):
+    """The card's bottom row: action buttons first, venue standing beside them.
+
+    Either half may be absent -- most papers have no code link, and unranked
+    venues carry no badges -- so the row is omitted entirely when both are.
+    """
+    parts = render_extra_links(doi) + render_metrics(work)
+    if not parts:
+        return ""
+    return f'\n        <div class="pub-footer">{parts}\n        </div>'
 
 
 def core_rank_at(entry, publication_year):
@@ -361,10 +373,10 @@ def render_metrics(work):
         return ""
 
     spans = "\n".join(
-        f'            <span class="metric {cls}" title="{html.escape(tooltip)}">{html.escape(text)}</span>'
+        f'                <span class="metric {cls}" title="{html.escape(tooltip)}">{html.escape(text)}</span>'
         for text, tooltip, cls in badges
     )
-    return f'\n        <div class="pub-metrics">\n{spans}\n        </div>'
+    return f'\n            <div class="pub-metrics">\n{spans}\n            </div>'
 
 
 def render_pub_card(work, badge):
@@ -373,17 +385,16 @@ def render_pub_card(work, badge):
     venue = html.escape(format_venue(work))
     doi = work.get("DOI", "")
     link = f"https://doi.org/{doi}" if doi else work.get("URL", "")
-    extra_links = render_extra_links(doi)
-    metrics = render_metrics(work)
+    footer = render_card_footer(work, doi)
 
     return f"""    <div class="pub-card">
-        <span class="pub-type">{html.escape(badge)}</span>{metrics}
+        <span class="pub-type">{html.escape(badge)}</span>
         <div class="pub-title">
             {authors}. <em>{title}.</em>
         </div>
         <span class="pub-venue">
             <a href="{html.escape(link)}" class="paper-link" target="_blank">{venue}</a>
-        </span>{extra_links}
+        </span>{footer}
     </div>"""
 
 

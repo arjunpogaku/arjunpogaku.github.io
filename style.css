@@ -429,22 +429,31 @@ h2.section-title {
 /* ===== Venue metrics (impact factor / quartile / CORE rank) ===== */
 /* Sits inline with the type chip. Values are curated in
    scripts/update_publications.py -- see the note there before editing. */
+/* Bottom row of a card: action buttons on the left, venue standing beside
+   them. Either half may be missing, so both sit in one wrapping flex row. */
+.pub-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
 .pub-metrics {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-left: 8px;
-    vertical-align: 2px;
 }
 
 .metric {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-family: var(--font-mono);
-    font-size: 0.7em;
+    font-size: 0.78em;
     font-weight: 600;
     letter-spacing: 0.02em;
-    padding: 2px 7px;
-    border-radius: 5px;
+    padding: 4px 9px;
+    border-radius: 6px;
     border: 1px solid var(--border);
     color: var(--text-muted);
     background-color: var(--surface-alt);
@@ -490,8 +499,8 @@ h2.section-title {
 /* ===== Publication extra links (Code / Try it) ===== */
 .pub-extra-links {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
-    margin-top: 10px;
 }
 
 .pub-extra-links a {
