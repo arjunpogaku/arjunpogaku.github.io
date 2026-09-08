@@ -12,6 +12,7 @@ replaced; everything else (hero, nav, Thesis section, footer) is untouched.
 
 No third-party dependencies -- stdlib only, so it runs unmodified in CI.
 """
+import datetime
 import html
 import json
 import re
@@ -53,6 +54,11 @@ PUBLICATIONS_HTML = REPO_ROOT / "publications.html"
 
 START_MARKER = "<!-- AUTO-PUBLICATIONS:START -->"
 END_MARKER = "<!-- AUTO-PUBLICATIONS:END -->"
+
+# Crossref date fields, most authoritative for citation purposes first.
+DATE_KEYS = ("published-print", "published-online", "published", "issued", "created")
+
+CURRENT_YEAR = datetime.date.today().year
 
 CROSSREF_TYPE_TO_BADGE = {
     "journal-article": "Journal",
@@ -152,16 +158,37 @@ def format_venue(work):
     return ", ".join(b for b in bits if b) + "."
 
 
+def read_date(work, key):
+    date_parts = work.get(key, {}).get("date-parts")
+    if not (date_parts and date_parts[0] and date_parts[0][0]):
+        return None
+    parts = date_parts[0]
+    year = parts[0]
+    month = parts[1] if len(parts) > 1 else 0
+    day = parts[2] if len(parts) > 2 else 0
+    return (year, month, day)
+
+
 def extract_date(work):
-    for key in ("published-print", "published-online", "published", "issued", "created"):
-        date_parts = work.get(key, {}).get("date-parts")
-        if date_parts and date_parts[0] and date_parts[0][0]:
-            parts = date_parts[0]
-            year = parts[0]
-            month = parts[1] if len(parts) > 1 else 0
-            day = parts[2] if len(parts) > 2 else 0
-            return (year, month, day)
-    return (0, 0, 0)
+    """Publication date, preferring the year a bibliography would cite.
+
+    `published-print` is the publisher's citation year, so it comes first.
+    But Springer forward-dates print volumes -- an LNCS chapter online in
+    July 2026 can carry a 2027 print date -- and listing a paper under a year
+    that hasn't happened reads as an error. When the preferred date is in the
+    future, fall back to the earliest date on which the work actually became
+    available.
+    """
+    dates = [d for d in (read_date(work, k) for k in DATE_KEYS) if d]
+    if not dates:
+        return (0, 0, 0)
+
+    preferred = dates[0]
+    if preferred[0] > CURRENT_YEAR:
+        available = [d for d in dates if d[0] <= CURRENT_YEAR]
+        if available:
+            return min(available)
+    return preferred
 
 
 def extract_year(work):
