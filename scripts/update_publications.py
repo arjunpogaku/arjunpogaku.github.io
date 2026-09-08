@@ -88,10 +88,10 @@ JOURNAL_METRICS = {
     },
     "2364-415X": {  # International Journal of Data Science and Analytics
         "name": "International Journal of Data Science and Analytics",
-        "impact_factor": None,
-        "quartile": None,
+        "impact_factor": "2.0",
+        "quartile": "Q2",
         "category": None,
-        "year": None,
+        "year": 2024,
     },
     "1530-8669": {  # Wireless Communications and Mobile Computing
         # Discontinued by Clarivate in 2023; no current impact factor exists.
@@ -107,21 +107,28 @@ JOURNAL_METRICS = {
 # change year to year, and papers from CORE-ranked conferences are often
 # published as LNCS/LNEE book chapters whose container is the series, not the
 # conference.
+#
+# `ranks` maps a CORE edition year to the rank in that edition, because a
+# conference is credited with the rank it held when the paper appeared, not
+# whatever it holds today. Record the rank from every edition the paper could
+# be read against; the renderer picks the newest edition published on or before
+# the paper's own year. Verify each value at
+# https://portal.core.edu.au/conf-ranks/ against the matching `source=CORE<year>`.
+CORE_EDITIONS = (2008, 2013, 2014, 2017, 2018, 2020, 2021, 2023, 2026)
+
 CONFERENCE_RANKS = {
     "10.1109/bigdata66926.2025.11402218": {
         "name": "IEEE International Conference on Big Data",
-        "core": "B",
-        "year": 2023,
+        "ranks": {2023: "B", 2026: "B"},
     },
     "10.1007/978-981-92-2885-0_3": {
         "name": "IEA/AIE",
-        "core": None,
-        "year": None,
+        "ranks": {2023: "C", 2026: "C"},
     },
     "10.1109/mcsoc67473.2025.00024": {
+        # Not listed in any CORE edition; renders no badge.
         "name": "IEEE MCSoC",
-        "core": None,
-        "year": None,
+        "ranks": {},
     },
 }
 
@@ -292,6 +299,23 @@ def render_extra_links(doi):
     return f'\n        <div class="pub-extra-links">\n{buttons}\n        </div>'
 
 
+def core_rank_at(entry, publication_year):
+    """The conference's rank in the CORE edition current when the paper appeared.
+
+    CORE re-ranks conferences every few years, so a 2021 paper should not
+    inherit a rank the conference only earned in 2026. Picks the newest edition
+    published on or before `publication_year`; returns (rank, edition) or None
+    when the conference was unranked at that point.
+    """
+    ranks = entry.get("ranks") or {}
+    applicable = [year for year in ranks if year <= publication_year]
+    if not applicable:
+        return None
+    edition = max(applicable)
+    rank = ranks[edition]
+    return (rank, edition) if rank else None
+
+
 def lookup_journal_metrics(work):
     for issn in work.get("ISSN") or []:
         metrics = JOURNAL_METRICS.get(issn.upper())
@@ -305,12 +329,16 @@ def render_metrics(work):
     badges = []
 
     conference = CONFERENCE_RANKS.get((work.get("DOI") or "").lower())
-    if conference and conference.get("core"):
-        badges.append((
-            f'CORE {conference["core"]}',
-            f'CORE {conference["year"]} rank for {conference["name"]}',
-            "metric-core",
-        ))
+    if conference:
+        ranked = core_rank_at(conference, extract_date(work)[0])
+        if ranked:
+            rank, edition = ranked
+            badges.append((
+                f"CORE {rank}",
+                f'CORE {edition} rank for {conference["name"]}, the edition '
+                f"current when this paper was published",
+                "metric-core",
+            ))
 
     metrics = lookup_journal_metrics(work)
     if metrics:
