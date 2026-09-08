@@ -55,8 +55,11 @@ PUBLICATIONS_HTML = REPO_ROOT / "publications.html"
 START_MARKER = "<!-- AUTO-PUBLICATIONS:START -->"
 END_MARKER = "<!-- AUTO-PUBLICATIONS:END -->"
 
-# Crossref date fields, most authoritative for citation purposes first.
-DATE_KEYS = ("published-print", "published-online", "published", "issued", "created")
+# Crossref date fields, in the order we trust them to name the publication
+# year. `published-online` leads: it is the date the work actually became
+# readable, whereas `published-print` is the year the publisher stamps on the
+# bound volume, which Springer routinely forward-dates.
+DATE_KEYS = ("published-online", "issued", "published-print", "published", "created")
 
 CURRENT_YEAR = datetime.date.today().year
 
@@ -170,14 +173,14 @@ def read_date(work, key):
 
 
 def extract_date(work):
-    """Publication date, preferring the year a bibliography would cite.
+    """Publication date, preferring when the work actually became available.
 
-    `published-print` is the publisher's citation year, so it comes first.
-    But Springer forward-dates print volumes -- an LNCS chapter online in
-    July 2026 can carry a 2027 print date -- and listing a paper under a year
-    that hasn't happened reads as an error. When the preferred date is in the
-    future, fall back to the earliest date on which the work actually became
-    available.
+    Springer forward-dates print volumes -- an LNCS chapter online in July 2026
+    can carry a 2027 `published-print` date -- so the online date, not the
+    print year, decides which year a work is listed under.
+
+    The future-year guard below is a backstop for records that carry *only* a
+    forward-dated print date, where there is no online date to prefer.
     """
     dates = [d for d in (read_date(work, k) for k in DATE_KEYS) if d]
     if not dates:
