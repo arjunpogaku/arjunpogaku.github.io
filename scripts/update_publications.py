@@ -49,6 +49,82 @@ EXTRA_LINKS = {
     ],
 }
 
+# ---------------------------------------------------------------------------
+# Venue metrics: impact factor, journal quartile, CORE conference rank.
+#
+# None of this is available programmatically. Crossref does not carry it, CORE
+# publishes no JSON API (the portal is HTML only), Scimago blocks automated
+# downloads, and JCR impact factors are licensed Clarivate data. So the numbers
+# below are curated by hand.
+#
+# Refresh once a year, when the new JCR and CORE editions land, and keep the
+# `year` fields accurate -- they are shown to readers in the badge tooltip.
+# Leave a value as None to hide that badge; a venue with no entry, or an entry
+# that is all None, simply renders no badges at all.
+
+# Journals, keyed by ISSN. A work matches if any of its ISSNs is a key, so
+# print and electronic ISSNs can both be listed.
+JOURNAL_METRICS = {
+    "2169-3536": {  # IEEE Access
+        "name": "IEEE Access",
+        "impact_factor": "3.4",
+        "quartile": "Q2",
+        "category": "Computer Science, Information Systems",
+        "year": 2024,
+    },
+    "2052-4463": {  # Scientific Data
+        "name": "Scientific Data",
+        "impact_factor": "5.8",
+        "quartile": "Q1",
+        "category": "Multidisciplinary Sciences",
+        "year": 2024,
+    },
+    "2405-9595": {  # ICT Express
+        "name": "ICT Express",
+        "impact_factor": "4.1",
+        "quartile": "Q1",
+        "category": "Telecommunications",
+        "year": 2024,
+    },
+    "2364-415X": {  # International Journal of Data Science and Analytics
+        "name": "International Journal of Data Science and Analytics",
+        "impact_factor": None,
+        "quartile": None,
+        "category": None,
+        "year": None,
+    },
+    "1530-8669": {  # Wireless Communications and Mobile Computing
+        # Discontinued by Clarivate in 2023; no current impact factor exists.
+        "name": "Wireless Communications and Mobile Computing",
+        "impact_factor": None,
+        "quartile": None,
+        "category": None,
+        "year": None,
+    },
+}
+
+# Conferences, keyed by lowercase DOI rather than by name: proceedings titles
+# change year to year, and papers from CORE-ranked conferences are often
+# published as LNCS/LNEE book chapters whose container is the series, not the
+# conference.
+CONFERENCE_RANKS = {
+    "10.1109/bigdata66926.2025.11402218": {
+        "name": "IEEE International Conference on Big Data",
+        "core": "B",
+        "year": 2023,
+    },
+    "10.1007/978-981-92-2885-0_3": {
+        "name": "IEA/AIE",
+        "core": None,
+        "year": None,
+    },
+    "10.1109/mcsoc67473.2025.00024": {
+        "name": "IEEE MCSoC",
+        "core": None,
+        "year": None,
+    },
+}
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLICATIONS_HTML = REPO_ROOT / "publications.html"
 
@@ -216,6 +292,53 @@ def render_extra_links(doi):
     return f'\n        <div class="pub-extra-links">\n{buttons}\n        </div>'
 
 
+def lookup_journal_metrics(work):
+    for issn in work.get("ISSN") or []:
+        metrics = JOURNAL_METRICS.get(issn.upper())
+        if metrics:
+            return metrics
+    return None
+
+
+def render_metrics(work):
+    """Badges for venue standing, rendered only where a curated value exists."""
+    badges = []
+
+    conference = CONFERENCE_RANKS.get((work.get("DOI") or "").lower())
+    if conference and conference.get("core"):
+        badges.append((
+            f'CORE {conference["core"]}',
+            f'CORE {conference["year"]} rank for {conference["name"]}',
+            "metric-core",
+        ))
+
+    metrics = lookup_journal_metrics(work)
+    if metrics:
+        if metrics.get("impact_factor"):
+            badges.append((
+                f'IF {metrics["impact_factor"]}',
+                f'{metrics["name"]} journal impact factor, JCR {metrics["year"]}',
+                "metric-if",
+            ))
+        if metrics.get("quartile"):
+            category = metrics.get("category")
+            label = f' in {category}' if category else ""
+            badges.append((
+                metrics["quartile"],
+                f'JCR {metrics["year"]} quartile{label}',
+                f'metric-quartile metric-{metrics["quartile"].lower()}',
+            ))
+
+    if not badges:
+        return ""
+
+    spans = "\n".join(
+        f'            <span class="metric {cls}" title="{html.escape(tooltip)}">{html.escape(text)}</span>'
+        for text, tooltip, cls in badges
+    )
+    return f'\n        <div class="pub-metrics">\n{spans}\n        </div>'
+
+
 def render_pub_card(work, badge):
     title = html.escape(work.get("title", [""])[0])
     authors = format_authors(work.get("author", []))
@@ -223,9 +346,10 @@ def render_pub_card(work, badge):
     doi = work.get("DOI", "")
     link = f"https://doi.org/{doi}" if doi else work.get("URL", "")
     extra_links = render_extra_links(doi)
+    metrics = render_metrics(work)
 
     return f"""    <div class="pub-card">
-        <span class="pub-type">{html.escape(badge)}</span>
+        <span class="pub-type">{html.escape(badge)}</span>{metrics}
         <div class="pub-title">
             {authors}. <em>{title}.</em>
         </div>

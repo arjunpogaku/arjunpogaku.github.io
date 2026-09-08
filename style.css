@@ -27,6 +27,12 @@
     --flow-free: #2f9e5f;
     --flow-moderate: #d99a2b;
     --flow-congested: #d64545;
+
+    /* Quartile badge text. The congestion colors above are tuned for filled
+       shapes in the research diagram and fall below WCAG AA as small text on
+       a light background, so the badges get their own darker variants. */
+    --metric-q1: #157a43;
+    --metric-q3: #8a6210;
 }
 
 body.dark-mode {
@@ -44,6 +50,10 @@ body.dark-mode {
     --flow-free: #4ac081;
     --flow-moderate: #e8b04c;
     --flow-congested: #ea6161;
+
+    /* On the dark surface the congestion colors already clear AA as text. */
+    --metric-q1: #4ac081;
+    --metric-q3: #e8b04c;
 }
 
 * { box-sizing: border-box; }
@@ -414,6 +424,67 @@ h2.section-title {
 
 .pub-card a.paper-link {
     font-weight: 600;
+}
+
+/* ===== Venue metrics (impact factor / quartile / CORE rank) ===== */
+/* Sits inline with the type chip. Values are curated in
+   scripts/update_publications.py -- see the note there before editing. */
+.pub-metrics {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-left: 8px;
+    vertical-align: 2px;
+}
+
+.metric {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 2px 7px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    background-color: var(--surface-alt);
+    cursor: help;
+    white-space: nowrap;
+}
+
+.metric-core {
+    color: var(--primary);
+    border-color: var(--primary);
+    background-color: transparent;
+}
+
+.metric-if {
+    color: var(--text);
+}
+
+/* Quartiles read as a scale, so they carry the same tiering as the
+   congestion colors rather than arbitrary decoration. */
+.metric-quartile {
+    background-color: transparent;
+}
+
+.metric-q1 {
+    color: var(--metric-q1);
+    border-color: var(--metric-q1);
+}
+
+.metric-q2 {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.metric-q3 {
+    color: var(--metric-q3);
+    border-color: var(--metric-q3);
+}
+
+.metric-q4 {
+    color: var(--text-muted);
 }
 
 /* ===== Publication extra links (Code / Try it) ===== */
