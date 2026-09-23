@@ -14,9 +14,11 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://arjunpogaku.github.io/">
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b3d63'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Georgia,serif' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171334'/%3E%3Ccircle cx='20' cy='22' r='5' fill='%239B8CFA'/%3E%3Ccircle cx='44' cy='18' r='4' fill='%239B8CFA'/%3E%3Ccircle cx='32' cy='44' r='6' fill='%23F2A93B'/%3E%3Cg stroke='%239B8CFA' stroke-width='2' stroke-opacity='0.6'%3E%3Cline x1='20' y1='22' x2='44' y2='18'/%3E%3Cline x1='20' y1='22' x2='32' y2='44'/%3E%3Cline x1='44' y1='18' x2='32' y2='44'/%3E%3C/g%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css?v=8d42ed1ad5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=dca26d5881">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script type="application/ld+json">
@@ -50,26 +52,27 @@
 </head>
 <body>
 
-<button id="darkModeToggle">🌙 Dark Mode</button>
+<button id="darkModeToggle" type="button" aria-label="Switch to light theme">◑</button>
 
-<header class="hero">
-    <div class="hero-inner">
-        <img src="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg" alt="Arjun Chakravarthi Pogaku">
-        <div class="hero-text">
-            <h1>Arjun Chakravarthi Pogaku</h1>
-            <p class="tagline">Researcher in Pattern Mining, Knowledge Graphs &amp; LLMs</p>
-            <p class="affiliation">Ph.D. Candidate, University of Aizu, Japan</p>
+<header class="masthead">
+    <canvas id="graphCanvas" aria-hidden="true"></canvas>
+    <div class="masthead-inner">
+        <div>
+            <p class="byline">Arjun Chakravarthi Pogaku</p>
+            <h1 class="statement">Making large-scale data explain itself</h1>
+            <p class="positioning">Knowledge graphs, pattern mining, and language models that stay grounded in what is actually true — not just accurate, but answerable.</p>
+            <p class="affiliation"><strong>Ph.D. Candidate</strong>, University of Aizu, Japan</p>
             <div class="research-links">
-                <a href="https://scholar.google.com/citations?user=VZJc8QoAAAAJ&hl=en" target="_blank">
+                <a href="https://scholar.google.com/citations?user=VZJc8QoAAAAJ&hl=en" target="_blank" rel="noopener">
                     <i class="fa-brands fa-google"></i> Google Scholar
                 </a>
-                <a href="https://www.researchgate.net/profile/Arjun_Pogaku2" target="_blank">
+                <a href="https://www.researchgate.net/profile/Arjun_Pogaku2" target="_blank" rel="noopener">
                     <i class="fab fa-researchgate"></i> ResearchGate
                 </a>
-                <a href="https://github.com/arjunpogaku" target="_blank">
+                <a href="https://github.com/arjunpogaku" target="_blank" rel="noopener">
                     <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/arjunpogaku-research" target="_blank">
+                <a href="https://www.linkedin.com/in/arjunpogaku-research" target="_blank" rel="noopener">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
                 <a href="mailto:arjun.chakravarthip@gmail.com">
@@ -77,67 +80,112 @@
                 </a>
             </div>
         </div>
+        <div class="portrait">
+            <img src="IMG_1242-EDIT(1).jpg" alt="Arjun Chakravarthi Pogaku">
+        </div>
     </div>
 </header>
 
 <nav class="site-nav">
-    <a href="index.html" class="active">About</a>
-    <a href="publications.html">Publications</a>
-    <a href="research.html">Research</a>
+    <div class="site-nav-inner">
+        <a href="index.html" class="active">About</a>
+        <a href="publications.html">Publications</a>
+        <a href="research.html">Research</a>
+    </div>
 </nav>
 
-<h2 class="section-title reveal">Biography</h2>
-<div class="about-content reveal">
-    <p>Arjun Chakravarthi Pogaku, born in 1997 in Madanapalle, Andhra Pradesh, India, is a researcher working at the intersection of Pattern Mining, Knowledge Graphs, and Large Language Models (LLMs). He is currently pursuing his Ph.D. in the Graduate Department of Computer and Information Systems at the University of Aizu, Japan, under the supervision of Dr. Uday Kiran RAGE.</p>
+<main class="wrap">
 
-    <p>His current research centers on grounding LLMs in structured, verifiable knowledge for data mining. With <strong>PAMI-GPT</strong>, he built a conversational framework that turns natural-language descriptions of pattern-mining workflows into reliable, executable analyses — work since formalized into a knowledge-grounded LLM framework for pattern mining. In parallel, he developed a <strong>symbolic knowledge graph framework for traffic congestion analysis</strong>, pairing deterministic graph construction with a domain-constrained LLM that generates Cypher queries directly from natural-language questions — an interpretable alternative to purely predictive traffic models. His broader pattern-mining work spans GPU-accelerated fuzzy frequent pattern mining and open datasets for real-world discovery, including a published dataset on PM2.5 pollution trends in Japan.</p>
+    <h2 class="section-title reveal">What I work on</h2>
+    <div class="focus-grid reveal">
+        <div class="focus-cell">
+            <span class="glyph"><i class="fa-solid fa-diagram-project"></i></span>
+            <h3>Knowledge graphs</h3>
+            <p>Turning raw spatiotemporal readings into explicit nodes and relationships, so an answer can be traced back to the data that produced it.</p>
+        </div>
+        <div class="focus-cell">
+            <span class="glyph"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+            <h3>Pattern mining</h3>
+            <p>Finding meaningful, uncertain, and time-dependent patterns in large real-world datasets — including GPU-accelerated fuzzy frequent pattern mining.</p>
+        </div>
+        <div class="focus-cell">
+            <span class="glyph"><i class="fa-solid fa-comment-dots"></i></span>
+            <h3>Grounded language models</h3>
+            <p>Constraining LLMs with schemas and domain rules so they generate queries and workflows that actually run, instead of plausible guesses.</p>
+        </div>
+    </div>
 
-    <p>Before this, Arjun contributed to research in Wireless Communications and Reconfigurable Intelligent Surfaces (RIS) as part of the WICOM Lab at Asia University, and served as an Assistant Professor in the Department of Electronics and Communication Engineering at the Madanapalle Institute of Technology and Science (MITS), India.</p>
-</div>
+    <h2 class="section-title reveal">Biography</h2>
+    <div class="about-content reveal">
+        <p class="lead">Arjun Chakravarthi Pogaku, born in 1997 in Madanapalle, Andhra Pradesh, India, is a researcher working at the intersection of Pattern Mining, Knowledge Graphs, and Large Language Models.</p>
 
-<h2 class="section-title reveal">Work Experience</h2>
-<ul class="timeline reveal">
-    <li>
-        <span class="period">Sep 2023 – Jan 2025</span>
-        <span class="role">Assistant Professor, Electronics and Communication Engineering</span>
-        <span class="org">Madanapalle Institute of Technology &amp; Science</span>
-    </li>
-    <li>
-        <span class="period">Oct 2020 – Jul 2023</span>
-        <span class="role">Research Assistant, WICOM Lab</span>
-        <span class="org">Department of Computer Science and Information Engineering, Asia University, Taiwan</span>
-    </li>
-    <li>
-        <span class="period">Feb 2019 – Apr 2019</span>
-        <span class="role">Intern</span>
-        <span class="org">Department of Bioinformatics and Medical Engineering, Asia University, Taiwan</span>
-    </li>
-</ul>
+        <p>He is currently pursuing his Ph.D. in the Graduate Department of Computer and Information Systems at the University of Aizu, Japan, under the supervision of Dr. Uday Kiran RAGE.</p>
 
-<h2 class="section-title reveal">Education</h2>
-<ul class="timeline reveal">
-    <li>
-        <span class="period">2025 – Present</span>
-        <span class="role">Ph.D. in Computer and Information Systems</span>
-        <span class="org">University of Aizu, Japan</span>
-    </li>
-    <li>
-        <span class="period">2019 – 2021</span>
-        <span class="role">Master of Engineering</span>
-        <span class="org">Asia University, Taiwan</span>
-    </li>
-    <li>
-        <span class="period">2015 – 2019</span>
-        <span class="role">Bachelor of Technology in Electronics and Communication Engineering</span>
-        <span class="org">Madanapalle Institute of Technology &amp; Science, India</span>
-    </li>
-</ul>
+        <p>His current research centers on grounding LLMs in structured, verifiable knowledge for data mining. With <strong>PAMI-GPT</strong>, he built a conversational framework that turns natural-language descriptions of pattern-mining workflows into reliable, executable analyses — work since formalized into a knowledge-grounded LLM framework for pattern mining. In parallel, he developed a <strong>symbolic knowledge graph framework for traffic congestion analysis</strong>, pairing deterministic graph construction with a domain-constrained LLM that generates Cypher queries directly from natural-language questions — an interpretable alternative to purely predictive traffic models. His broader pattern-mining work spans GPU-accelerated fuzzy frequent pattern mining and open datasets for real-world discovery, including a published dataset on PM2.5 pollution trends in Japan. That record now underpins <strong>JPM2KG</strong>, a knowledge graph of more than 71 million air-quality observations, and <strong>AirCypher-150</strong>, a benchmark for natural-language querying over it, accepted and presented at BDA 2026.</p>
+
+        <p>Before this, Arjun contributed to research in Wireless Communications and Reconfigurable Intelligent Surfaces (RIS) as part of the WICOM Lab at Asia University, and served as an Assistant Professor in the Department of Electronics and Communication Engineering at the Madanapalle Institute of Technology and Science (MITS), India.</p>
+    </div>
+
+    <h2 class="section-title reveal">Experience</h2>
+    <ul class="timeline reveal">
+        <li>
+            <span class="period">Sep 2023 – Jan 2025</span>
+            <span class="role">Assistant Professor, Electronics and Communication Engineering</span>
+            <span class="org">Madanapalle Institute of Technology &amp; Science</span>
+        </li>
+        <li>
+            <span class="period">Oct 2020 – Jul 2023</span>
+            <span class="role">Research Assistant, WICOM Lab</span>
+            <span class="org">Department of Computer Science and Information Engineering, Asia University, Taiwan</span>
+        </li>
+        <li>
+            <span class="period">Feb 2019 – Apr 2019</span>
+            <span class="role">Intern</span>
+            <span class="org">Department of Bioinformatics and Medical Engineering, Asia University, Taiwan</span>
+        </li>
+    </ul>
+
+    <h2 class="section-title reveal">Education</h2>
+    <ul class="timeline reveal">
+        <li>
+            <span class="period">2025 – Present</span>
+            <span class="role">Ph.D. in Computer and Information Systems</span>
+            <span class="org">University of Aizu, Japan</span>
+        </li>
+        <li>
+            <span class="period">2019 – 2021</span>
+            <span class="role">Master of Engineering</span>
+            <span class="org">Asia University, Taiwan</span>
+        </li>
+        <li>
+            <span class="period">2015 – 2019</span>
+            <span class="role">Bachelor of Technology in Electronics and Communication Engineering</span>
+            <span class="org">Madanapalle Institute of Technology &amp; Science, India</span>
+        </li>
+    </ul>
+
+    <h2 class="section-title reveal">Get in touch</h2>
+    <div class="contact-band reveal">
+        <p>If you are working on knowledge graphs, pattern mining, or grounding language models in real data, I would like to hear about it.</p>
+        <div class="project-links">
+            <a class="primary" href="mailto:arjun.chakravarthip@gmail.com"><i class="fa-solid fa-envelope"></i> Email me</a>
+            <a class="secondary" href="research.html"><i class="fa-solid fa-diagram-project"></i> See the research</a>
+        </div>
+    </div>
+
+</main>
 
 <footer>
-    &copy; 2025 Arjun Chakravarthi Pogaku
+    <span>&copy; 2025 Arjun Chakravarthi Pogaku</span>
+    <span><a href="https://orcid.org/0000-0003-2680-6371" target="_blank" rel="noopener">ORCID 0000-0003-2680-6371</a></span>
 </footer>
 
-<script src="script.js?v=51f70c7ee4" defer></script>
+<script src="script.js?v=a0ec4ee56b" defer></script>
+
+
+<!-- Cloudflare Web Analytics: cookieless, so no consent banner is required.
+     Reports only from the registered hostname, so it stays silent on localhost. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1096fe3a3d8e4dcbaa3b4eadb2dcd013"}'></script>
 
 </body>
 </html>

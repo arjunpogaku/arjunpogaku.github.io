@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arjun Chakravarthi Pogaku — Publications</title>
-    <meta name="description" content="Publications by Arjun Chakravarthi Pogaku: journal articles, conference papers, and thesis work in Pattern Mining, Data Science, LLMs, and Wireless Communications.">
+    <meta name="description" content="Publications by Arjun Chakravarthi Pogaku: journal articles, conference papers, and thesis work in Pattern Mining, Knowledge Graphs, LLMs, and Wireless Communications.">
     <link rel="canonical" href="https://arjunpogaku.github.io/publications.html">
 
     <meta property="og:title" content="Arjun Chakravarthi Pogaku — Publications">
-    <meta property="og:description" content="Journal articles, conference papers, and thesis work in Pattern Mining, Data Science, LLMs, and Wireless Communications.">
+    <meta property="og:description" content="Journal articles, conference papers, and thesis work in Pattern Mining, Knowledge Graphs, LLMs, and Wireless Communications.">
     <meta property="og:image" content="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://arjunpogaku.github.io/publications.html">
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b3d63'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Georgia,serif' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171334'/%3E%3Ccircle cx='20' cy='22' r='5' fill='%239B8CFA'/%3E%3Ccircle cx='44' cy='18' r='4' fill='%239B8CFA'/%3E%3Ccircle cx='32' cy='44' r='6' fill='%23F2A93B'/%3E%3Cg stroke='%239B8CFA' stroke-width='2' stroke-opacity='0.6'%3E%3Cline x1='20' y1='22' x2='44' y2='18'/%3E%3Cline x1='20' y1='22' x2='32' y2='44'/%3E%3Cline x1='44' y1='18' x2='32' y2='44'/%3E%3C/g%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css?v=8d42ed1ad5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=dca26d5881">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script type="application/ld+json">
@@ -28,56 +30,69 @@
 </head>
 <body>
 
-<button id="darkModeToggle">🌙 Dark Mode</button>
+<button id="darkModeToggle" type="button" aria-label="Switch to light theme">◑</button>
 
-<header class="hero">
-    <div class="hero-inner">
-        <img src="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg" alt="Arjun Chakravarthi Pogaku">
-        <div class="hero-text">
-            <h1>Arjun Chakravarthi Pogaku</h1>
-            <p class="tagline">Researcher in Pattern Mining, Knowledge Graphs &amp; LLMs</p>
-            <p class="affiliation">Ph.D. Candidate, University of Aizu, Japan</p>
-            <div class="research-links">
-                <a href="https://scholar.google.com/citations?user=VZJc8QoAAAAJ&hl=en" target="_blank">
-                    <i class="fa-brands fa-google"></i> Google Scholar
-                </a>
-                <a href="https://www.researchgate.net/profile/Arjun_Pogaku2" target="_blank">
-                    <i class="fab fa-researchgate"></i> ResearchGate
-                </a>
-                <a href="https://github.com/arjunpogaku" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/arjunpogaku-research" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:arjun.chakravarthip@gmail.com">
-                    <i class="fa-solid fa-envelope"></i> Email
-                </a>
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <a href="index.html">About</a>
+        <a href="publications.html" class="active">Publications</a>
+        <a href="research.html">Research</a>
+    </div>
+</nav>
+
+<main class="wrap">
+
+    <h2 class="section-title">Publications</h2>
+
+    <div class="pub-stats" id="pubStats">
+        <div class="pub-stat">
+            <span class="value" data-stat="total">0</span>
+            <span class="label">Peer-reviewed works</span>
+        </div>
+        <div class="pub-stat">
+            <span class="value" data-stat="journal">0</span>
+            <span class="label">Journal articles</span>
+        </div>
+        <div class="pub-stat">
+            <span class="value" data-stat="venues">0</span>
+            <span class="label">Years publishing</span>
+        </div>
+    </div>
+
+    <div class="pub-controls">
+        <input type="search" id="pubSearch" placeholder="Search by title or author…" aria-label="Search publications">
+        <div class="pub-filter-pills" id="pubFilterPills">
+            <button class="pill active" data-type="all" type="button">All</button>
+            <button class="pill" data-type="Journal" type="button">Journal</button>
+            <button class="pill" data-type="Conference" type="button">Conference</button>
+            <button class="pill" data-type="Book Chapter" type="button">Book Chapter</button>
+            <button class="pill" data-type="Master Thesis" type="button">Thesis</button>
+        </div>
+    </div>
+
+    <p id="pubNoResults" class="pub-no-results" style="display:none;">No publications match your search — try a different term or filter.</p>
+
+<!-- Accepted work that Crossref does not carry yet, so the generator cannot
+     see it. Kept OUTSIDE the markers below so it survives regeneration.
+     Move it into EXTRA_DOIS in scripts/update_publications.py once a DOI exists. -->
+<div class="pub-year-group">
+    <h3>In press</h3>
+
+    <div class="pub-card">
+        <span class="pub-type">Conference</span>
+        <div class="pub-title">
+            <strong>A. C. Pogaku</strong>, U. K. Rage, P. Selvaraj, N. K. Pera. <em>Structured Domain Grounding for Natural-Language Querying of Japan's Large-Scale PM2.5 Knowledge Graph.</em>
+        </div>
+        <span class="pub-venue">
+            International Conference on Big Data Analytics (BDA) 2026, BITS Pilani Goa. Accepted and presented; proceedings forthcoming.
+        </span>
+        <div class="pub-footer">
+            <div class="pub-metrics">
+                <span class="metric metric-core" title="Accepted and presented at BDA 2026; awaiting publication">In press</span>
             </div>
         </div>
     </div>
-</header>
-
-<nav class="site-nav">
-    <a href="index.html">About</a>
-    <a href="publications.html" class="active">Publications</a>
-    <a href="research.html">Research</a>
-</nav>
-
-<h2 class="section-title">Publications</h2>
-
-<div class="pub-controls">
-    <input type="search" id="pubSearch" placeholder="Search by title or author…" aria-label="Search publications">
-    <div class="pub-filter-pills" id="pubFilterPills">
-        <button class="pill active" data-type="all" type="button">All</button>
-        <button class="pill" data-type="Journal" type="button">Journal</button>
-        <button class="pill" data-type="Conference" type="button">Conference</button>
-        <button class="pill" data-type="Book Chapter" type="button">Book Chapter</button>
-        <button class="pill" data-type="Master Thesis" type="button">Thesis</button>
-    </div>
 </div>
-
-<p id="pubNoResults" class="pub-no-results" style="display:none;">No publications match your search — try a different term or filter.</p>
 
 <!-- The block below is auto-generated from ORCID + Crossref by scripts/update_publications.py
      via a scheduled GitHub Action. Manual edits inside the markers will be overwritten. -->
@@ -297,29 +312,19 @@
 
 <!-- AUTO-PUBLICATIONS:END -->
 
-<h2 class="section-title reveal">Thesis</h2>
-
-<div class="pub-year-group reveal">
-    <h3>2021</h3>
-
-    <div class="pub-card">
-        <span class="pub-type">Master Thesis</span>
-        <div class="pub-title">
-            Arjun Chakravarthi Pogaku (2021).
-            <em>Performance Analysis of Reconfigurable Intelligent Surfaces Integrated with Non-Orthogonal Multiple Access Technique and Cognitive Radio Networks.</em>
-            亞洲大學資訊工程學系碩士論文，台中市。
-        </div>
-        <span class="pub-venue">
-            <a href="https://hdl.handle.net/11296/237rj3" class="paper-link" target="_blank">View Thesis</a>
-        </span>
-    </div>
-</div>
+</main>
 
 <footer>
-    &copy; 2025 Arjun Chakravarthi Pogaku
+    <span>&copy; 2025 Arjun Chakravarthi Pogaku</span>
+    <span><a href="https://orcid.org/0000-0003-2680-6371" target="_blank" rel="noopener">ORCID 0000-0003-2680-6371</a></span>
 </footer>
 
-<script src="script.js?v=51f70c7ee4" defer></script>
+<script src="script.js?v=a0ec4ee56b" defer></script>
+
+
+<!-- Cloudflare Web Analytics: cookieless, so no consent banner is required.
+     Reports only from the registered hostname, so it stays silent on localhost. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1096fe3a3d8e4dcbaa3b4eadb2dcd013"}'></script>
 
 </body>
 </html>

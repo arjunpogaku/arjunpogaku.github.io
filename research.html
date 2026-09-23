@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arjun Chakravarthi Pogaku — Knowledge Graphs + LLMs for Traffic Analysis</title>
-    <meta name="description" content="A symbolic knowledge graph framework for spatiotemporal traffic congestion analysis, paired with a domain-assisted LLM that turns natural-language questions into reliable Cypher queries.">
+    <title>Arjun Chakravarthi Pogaku — Research</title>
+    <meta name="description" content="Research by Arjun Chakravarthi Pogaku: grounding language models in structured knowledge graphs, pattern mining at scale, and earlier work on reconfigurable intelligent surfaces.">
     <link rel="canonical" href="https://arjunpogaku.github.io/research.html">
 
-    <meta property="og:title" content="Arjun Chakravarthi Pogaku — Knowledge Graphs + LLMs for Traffic Analysis">
-    <meta property="og:description" content="Turning high-frequency traffic congestion data into a queryable knowledge graph, with a domain-constrained LLM for natural-language querying.">
+    <meta property="og:title" content="Arjun Chakravarthi Pogaku — Research">
+    <meta property="og:description" content="Knowledge graphs that make large-scale data answerable, pattern mining at scale, and the systems work behind both.">
     <meta property="og:image" content="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://arjunpogaku.github.io/research.html">
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b3d63'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Georgia,serif' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171334'/%3E%3Ccircle cx='20' cy='22' r='5' fill='%239B8CFA'/%3E%3Ccircle cx='44' cy='18' r='4' fill='%239B8CFA'/%3E%3Ccircle cx='32' cy='44' r='6' fill='%23F2A93B'/%3E%3Cg stroke='%239B8CFA' stroke-width='2' stroke-opacity='0.6'%3E%3Cline x1='20' y1='22' x2='44' y2='18'/%3E%3Cline x1='20' y1='22' x2='32' y2='44'/%3E%3Cline x1='44' y1='18' x2='32' y2='44'/%3E%3C/g%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css?v=8d42ed1ad5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=dca26d5881">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script type="application/ld+json">
@@ -28,53 +30,111 @@
 </head>
 <body>
 
-<button id="darkModeToggle">🌙 Dark Mode</button>
-
-<header class="hero">
-    <div class="hero-inner">
-        <img src="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg" alt="Arjun Chakravarthi Pogaku">
-        <div class="hero-text">
-            <h1>Arjun Chakravarthi Pogaku</h1>
-            <p class="tagline">Researcher in Pattern Mining, Knowledge Graphs &amp; LLMs</p>
-            <p class="affiliation">Ph.D. Candidate, University of Aizu, Japan</p>
-            <div class="research-links">
-                <a href="https://scholar.google.com/citations?user=VZJc8QoAAAAJ&hl=en" target="_blank">
-                    <i class="fa-brands fa-google"></i> Google Scholar
-                </a>
-                <a href="https://www.researchgate.net/profile/Arjun_Pogaku2" target="_blank">
-                    <i class="fab fa-researchgate"></i> ResearchGate
-                </a>
-                <a href="https://github.com/arjunpogaku" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/arjunpogaku-research" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:arjun.chakravarthip@gmail.com">
-                    <i class="fa-solid fa-envelope"></i> Email
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
+<button id="darkModeToggle" type="button" aria-label="Switch to light theme">◑</button>
 
 <nav class="site-nav">
-    <a href="index.html">About</a>
-    <a href="publications.html">Publications</a>
-    <a href="research.html" class="active">Research</a>
+    <div class="site-nav-inner">
+        <a href="index.html">About</a>
+        <a href="publications.html">Publications</a>
+        <a href="research.html" class="active">Research</a>
+    </div>
 </nav>
 
-<section class="project-hero">
-    <span class="eyebrow">Featured Research</span>
-    <h1>Turning Traffic Data into Queryable Knowledge Graphs</h1>
+<main class="wrap">
+
+<section class="research-intro">
+    <h1>Research</h1>
     <p class="thesis">
-        Large-scale transportation networks continuously generate massive spatiotemporal data —
-        most research just predicts what happens next. This work builds a symbolic knowledge graph
-        that captures <em>why</em>, and a domain-constrained LLM that lets you ask it directly.
+        A single question runs through my work: can a system tell you <em>why</em>, and not only what comes next?
+        Prediction alone leaves no trail back to the evidence. Building an explicit graph of relationships does —
+        and once that structure exists, a language model can be held to it.
     </p>
 
-    <div class="kg-illustration-wrap">
-        <svg class="kg-illustration" viewBox="0 0 960 480" role="img" aria-label="Diagram: a knowledge graph of road segments, linked by spatial and temporal relationships and colored by congestion level, feeds a domain-assisted LLM. The LLM grounds a natural-language question in the graph, generates a Cypher query, and returns an answer.">
+    <nav class="thread-jump" aria-label="Research areas">
+        <a href="#grounding">Grounding language models</a>
+        <a href="#mining">Pattern mining at scale</a>
+        <a href="#wireless">Wireless systems</a>
+    </nav>
+</section>
+
+<!-- ===== Thread 1 ===== -->
+<section class="thread" id="grounding">
+    <h2 class="section-title reveal">Grounding language models in structure</h2>
+    <p class="thread-lede reveal">
+        A language model can write a query that runs perfectly and still answers the wrong question.
+        This line of work builds the missing half: explicit knowledge graphs over real measurement data,
+        plus a domain knowledge base that constrains what the model is allowed to say.
+    </p>
+
+    <article class="work work-featured reveal">
+        <div class="work-status">
+            <span class="status-chip">Accepted · BDA 2026</span>
+            <span class="status-note">Presented at BITS Pilani Goa. Proceedings forthcoming.</span>
+        </div>
+
+        <h3>Structured Domain Grounding for Natural-Language Querying of Japan&rsquo;s Large-Scale PM<sub>2.5</sub> Knowledge Graph</h3>
+
+        <p class="work-authors">Arjun Chakravarthi Pogaku, Uday Kiran Rage, Padma Selvaraj, Naveen Kumar Pera</p>
+
+        <p>
+            Japan&rsquo;s air-quality monitoring network produces measurements at a scale no analyst can read directly.
+            This work turns that record into <strong>JPM2KG</strong>, a knowledge graph built from more than 71 million
+            observations across 1,116 monitoring stations, then asks whether a language model can be trusted to query it
+            in plain language.
+        </p>
+
+        <p>
+            To answer that honestly rather than anecdotally, the paper introduces <strong>AirCypher-150</strong>, a
+            benchmark of 150 natural-language and Cypher query pairs validated by execution, and a
+            <strong>Domain Knowledge Base</strong> that supplies canonical domain values, domain rules, query policies,
+            and worked examples on top of the bare graph schema. Six prompting configurations were evaluated across four
+            open-source models and a fine-tuned Text2Cypher baseline.
+        </p>
+
+        <div class="stat-row">
+            <div class="stat">
+                <span class="stat-value">71M</span>
+                <span class="stat-label">observations in the graph</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">1,116</span>
+                <span class="stat-label">monitoring stations</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">150</span>
+                <span class="stat-label">execution-validated query pairs</span>
+            </div>
+        </div>
+
+        <div class="finding">
+            <p class="finding-head">Schema alone is not grounding</p>
+            <p>
+                Prompting with the graph schema produced queries that almost all executed cleanly, yet were
+                semantically correct almost never — a pooled VM-F1 of <strong>0.001</strong>. Adding canonical domain
+                values and structured domain knowledge raised the same measure to <strong>0.416</strong>.
+                An executable query is not a correct answer, and the gap between those two things is where the
+                domain knowledge has to go.
+            </p>
+        </div>
+    </article>
+
+    <article class="work reveal">
+        <div class="work-status">
+            <span class="status-chip published">Book chapter · 2026</span>
+            <span class="status-note">Advances and Trends in Artificial Intelligence, Springer Nature Singapore.</span>
+        </div>
+
+        <h3>A Symbolic Knowledge Graph Framework for Spatiotemporal Traffic Congestion Analysis</h3>
+
+        <p>
+            The same idea applied to road networks. Deterministic rules turn high-frequency congestion readings into a
+            graph of spatial, temporal, and congestion-level relationships; a domain-constrained model then generates
+            Cypher directly from a plain-language question. Every answer traces back to the nodes and edges that
+            produced it.
+        </p>
+
+        <div class="kg-illustration-wrap">
+            <svg class="kg-illustration" viewBox="0 0 960 480" role="img" aria-label="Diagram: a knowledge graph of road segments, linked by spatial and temporal relationships and colored by congestion level, feeds a domain-assisted LLM. The LLM grounds a natural-language question in the graph, generates a Cypher query, and returns an answer.">
             <defs>
                 <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
                     <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--accent)"></path>
@@ -173,72 +233,122 @@
             </g>
         </svg>
 
-        <div class="kg-legend">
-            <span><span class="dot" style="background:var(--flow-free)"></span>Free flow</span>
-            <span><span class="dot" style="background:var(--flow-moderate)"></span>Moderate</span>
-            <span><span class="dot" style="background:var(--flow-congested)"></span>Congested</span>
-            <span><span class="line-swatch solid"></span>Spatial relationship</span>
-            <span><span class="line-swatch dashed"></span>Temporal relationship</span>
+            <div class="kg-legend">
+                <span><span class="dot" style="background:var(--flow-free)"></span>Free flow</span>
+                <span><span class="dot" style="background:var(--flow-moderate)"></span>Moderate</span>
+                <span><span class="dot" style="background:var(--flow-congested)"></span>Congested</span>
+                <span><span class="line-swatch solid"></span>Spatial relationship</span>
+                <span><span class="line-swatch dashed"></span>Temporal relationship</span>
+            </div>
+
+            <p id="kgDetail" class="kg-detail">Select any highlighted part of the diagram to see what it does.</p>
         </div>
 
-        <p id="kgDetail" class="kg-detail">Click any highlighted part of the diagram to learn more about it.</p>
-    </div>
+        <div class="project-links">
+            <a class="primary" href="https://doi.org/10.1007/978-981-92-2885-0_3" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> Read the paper</a>
+            <a class="secondary" href="https://github.com/arjunpogaku/traffic_kgs" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the code</a>
+        </div>
+    </article>
 
-    <div class="project-links">
-        <a class="primary" href="https://doi.org/10.1007/978-981-92-2885-0_3" target="_blank"><i class="fa-solid fa-file-lines"></i> Read the Paper</a>
-        <a class="secondary" href="https://github.com/arjunpogaku/traffic_kgs" target="_blank"><i class="fab fa-github"></i> View Code</a>
+    <article class="work reveal">
+        <div class="work-status">
+            <span class="status-chip published">Journal · 2026</span>
+            <span class="status-note">International Journal of Data Science and Analytics. Conference version at IEEE MCSoC 2025.</span>
+        </div>
+
+        <h3>PAMI-GPT: knowledge-grounded LLMs for reliable pattern mining workflow generation</h3>
+
+        <p>
+            Pattern mining libraries are powerful and awkward to drive. PAMI-GPT takes a described analysis in plain
+            language and produces a workflow that actually runs, grounding generation in what the library can really do
+            rather than what a model assumes. It began as a conversational custom-GPT presented at MCSoC and was
+            formalized into a knowledge-grounded framework for the journal version.
+        </p>
+
+        <div class="project-links">
+            <a class="primary" href="https://doi.org/10.1007/s41060-026-01237-z" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> Read the paper</a>
+            <a class="secondary" href="https://github.com/MadhaviPalla/PAMI-GPT" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the code</a>
+        </div>
+    </article>
+</section>
+
+<!-- ===== Thread 2 ===== -->
+<section class="thread" id="mining">
+    <h2 class="section-title reveal">Pattern mining at scale</h2>
+    <p class="thread-lede reveal">
+        Before a graph can explain anything, the patterns underneath it have to be findable, and the data has to exist
+        in a form other researchers can use. This work covers both, and it is where the questions above came from.
+    </p>
+
+    <div class="work-grid reveal">
+        <article class="work-compact">
+            <span class="status-chip published">Conference · 2025</span>
+            <h3>Accelerating Fuzzy Frequent Pattern Mining on GPUs with GPU Direct Storage</h3>
+            <p>Moving fuzzy frequent pattern mining onto GPUs, with storage read straight into device memory so the data path stops being the bottleneck.</p>
+            <p class="work-venue">IEEE International Conference on Big Data (BigData) 2025</p>
+        </article>
+
+        <article class="work-compact">
+            <span class="status-chip published">Journal · 2025</span>
+            <h3>Patterns Discovery Dataset for Particulate Matter (PM<sub>2.5</sub>) Pollution Trends in Japan</h3>
+            <p>The open dataset behind the air-quality work — published so that pattern-discovery methods can be compared on a real environmental record rather than a synthetic one.</p>
+            <p class="work-venue">Scientific Data 2025</p>
+        </article>
+
+        <article class="work-compact">
+            <span class="status-chip published">Book chapter · 2025</span>
+            <h3>A Novel Multi-task Learning Framework for Predicting Traffic Congestion</h3>
+            <p>A predictive model for congestion across a road network. Accurate forecasts, but no account of why — the limitation that led directly to the knowledge graph work above.</p>
+            <p class="work-venue">Big Data and Artificial Intelligence, Springer Nature Switzerland</p>
+        </article>
     </div>
 </section>
 
-<p class="pull-quote reveal">Most traffic research chases <span>better predictions</span>. This work asks what happens if the data can <span>explain itself</span>.</p>
+<!-- ===== Thread 3 ===== -->
+<section class="thread" id="wireless">
+    <h2 class="section-title reveal">Wireless systems and intelligent surfaces</h2>
+    <p class="thread-lede reveal">
+        Earlier work at the WICOM Lab, Asia University, on reconfigurable intelligent surfaces — analysing outage and
+        ergodic performance under hardware impairments, phase errors, and NOMA, and surveying where the field stood.
+        Seven papers between 2020 and 2023, including three in IEEE Access.
+    </p>
 
-<h2 class="section-title reveal">How it works</h2>
+    <div class="work-grid reveal">
+        <article class="work-compact">
+            <span class="status-chip published">Journal · 2023</span>
+            <h3>Ergodic performance analysis of intelligent reflecting surface network with phase errors</h3>
+            <p class="work-venue">ICT Express</p>
+        </article>
 
-<div class="pipeline reveal">
-    <div class="pipeline-stage">
-        <span class="stage-tag">01 · data</span>
-        <h4>Spatiotemporal data</h4>
-        <p>High-frequency, multivariate congestion readings across a road network, hour by hour.</p>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-stage">
-        <span class="stage-tag">02 · graph</span>
-        <h4>Symbolic construction</h4>
-        <p>Deterministic rules translate readings into nodes and edges — spatial, temporal, and congestion-level relationships.</p>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-stage">
-        <span class="stage-tag">03 · rules</span>
-        <h4>Domain knowledge base</h4>
-        <p>Schema constraints, domain rules, and exemplar queries ground the system in what's actually true about the graph.</p>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-stage">
-        <span class="stage-tag">04 · query</span>
-        <h4>DKB-assisted LLM</h4>
-        <p>Constrained generation produces valid Cypher instead of guesses — schema-aware and rule-checked.</p>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-stage">
-        <span class="stage-tag">05 · answer</span>
-        <h4>Natural language</h4>
-        <p>Results return as plain-language answers, traceable back to the exact graph relationships that produced them.</p>
-    </div>
-</div>
+        <article class="work-compact">
+            <span class="status-chip published">Journal · 2022</span>
+            <h3>UAV-Assisted RIS for Future Wireless Communications: A Survey on Optimization and Performance Analysis</h3>
+            <p class="work-venue">IEEE Access</p>
+        </article>
 
-<div class="callout reveal">
-    <strong>Why interpretability matters:</strong> a purely predictive model tells you traffic will be bad —
-    not why, or where the pattern came from. By grounding every query in an explicit graph of spatial, temporal,
-    and congestion relationships, each answer traces back to the data that produced it. In evaluation on
-    real-world traffic data, the DKB-assisted LLM produced significantly more accurate and relevant answers
-    than general-purpose LLMs prompted directly on the same data.
-</div>
+        <article class="work-compact">
+            <span class="status-chip published">Journal · 2021</span>
+            <h3>Reconfigurable Intelligent Surface Aided Multi-User Communications: State-of-the-Art Techniques and Open Issues</h3>
+            <p class="work-venue">IEEE Access</p>
+        </article>
+    </div>
+
+    <p class="thread-more reveal"><a href="publications.html">See all publications</a></p>
+</section>
+
+</main>
 
 <footer>
-    &copy; 2025 Arjun Chakravarthi Pogaku
+    <span>&copy; 2025 Arjun Chakravarthi Pogaku</span>
+    <span><a href="https://orcid.org/0000-0003-2680-6371" target="_blank" rel="noopener">ORCID 0000-0003-2680-6371</a></span>
 </footer>
 
-<script src="script.js?v=51f70c7ee4" defer></script>
+<script src="script.js?v=a0ec4ee56b" defer></script>
+
+
+<!-- Cloudflare Web Analytics: cookieless, so no consent banner is required.
+     Reports only from the registered hostname, so it stays silent on localhost. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1096fe3a3d8e4dcbaa3b4eadb2dcd013"}'></script>
 
 </body>
 </html>
