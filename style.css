@@ -1253,7 +1253,6 @@ main.wrap > .section-title:first-child { margin-top: 44px; }
 .linkedin-posts iframe {
     width: 100%;
     max-width: 504px;
-    height: 1048px;
     border: 1px solid var(--border);
     border-radius: 12px;
     background: #fff;
