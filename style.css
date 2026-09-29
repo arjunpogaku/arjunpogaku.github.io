@@ -1242,3 +1242,19 @@ main.wrap > .section-title:first-child { margin-top: 44px; }
 
     #darkModeToggle { top: 12px; right: 12px; width: 36px; height: 36px; }
 }
+
+/* LinkedIn embeds: LinkedIn draws the post itself, so we only frame it */
+.linkedin-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 8px;
+}
+.linkedin-posts iframe {
+    width: 100%;
+    max-width: 504px;
+    height: 1048px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+}
