@@ -9,16 +9,17 @@
 
     <meta property="og:title" content="Arjun Chakravarthi Pogaku — Research">
     <meta property="og:description" content="Knowledge graphs that make large-scale data answerable, pattern mining at scale, and the systems work behind both.">
-    <meta property="og:image" content="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg">
+    <meta property="og:image" content="https://arjunpogaku.github.io/portrait.jpg">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://arjunpogaku.github.io/research.html">
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171334'/%3E%3Ccircle cx='20' cy='22' r='5' fill='%239B8CFA'/%3E%3Ccircle cx='44' cy='18' r='4' fill='%239B8CFA'/%3E%3Ccircle cx='32' cy='44' r='6' fill='%23F2A93B'/%3E%3Cg stroke='%239B8CFA' stroke-width='2' stroke-opacity='0.6'%3E%3Cline x1='20' y1='22' x2='44' y2='18'/%3E%3Cline x1='20' y1='22' x2='32' y2='44'/%3E%3Cline x1='44' y1='18' x2='32' y2='44'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E1B2C'/%3E%3Cg stroke='%238FB0FF' stroke-width='2.5' stroke-opacity='0.7'%3E%3Cline x1='20' y1='22' x2='44' y2='18'/%3E%3Cline x1='20' y1='22' x2='32' y2='44'/%3E%3Cline x1='44' y1='18' x2='32' y2='44'/%3E%3C/g%3E%3Ccircle cx='20' cy='22' r='5' fill='%238FB0FF'/%3E%3Ccircle cx='44' cy='18' r='4' fill='%238FB0FF'/%3E%3Ccircle cx='32' cy='44' r='6' fill='%23FFFFFF'/%3E%3C/svg%3E">
 
+    <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css?v=5b116940d5">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+    <link rel="stylesheet" href="style.css?v=49054b22a0">
 
     <script type="application/ld+json">
     {
@@ -30,19 +31,21 @@
 </head>
 <body>
 
-<button id="darkModeToggle" type="button" aria-label="Switch to light theme">◑</button>
-
-<nav class="site-nav">
-    <div class="site-nav-inner">
-        <a href="index.html">About</a>
-        <a href="publications.html">Publications</a>
-        <a href="research.html" class="active">Research</a>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="site-name" href="index.html">Arjun Chakravarthi Pogaku</a>
+        <nav class="site-nav" aria-label="Main">
+            <a href="index.html">About</a>
+            <a href="research.html" aria-current="page">Research</a>
+            <a href="publications.html">Publications</a>
+        </nav>
+        <button id="themeToggle" type="button">Dark mode</button>
     </div>
-</nav>
+</header>
 
 <main class="wrap">
 
-<section class="research-intro">
+<section class="page-head">
     <h1>Research</h1>
     <p class="thesis">
         A single question runs through my work: can a system tell you <em>why</em>, and not only what comes next?
@@ -62,14 +65,14 @@
 
 <!-- ===== Thread 1 ===== -->
 <section class="thread" id="grounding">
-    <h2 class="section-title reveal">Knowledge graphs and grounded querying</h2>
-    <p class="thread-lede reveal">
+    <h2 class="section-title">Knowledge graphs and grounded querying</h2>
+    <p class="thread-lede">
         A language model can write a query that runs perfectly and still answers the wrong question. My work builds
         the missing half: explicit knowledge graphs over real measurement data, and a domain knowledge base that
         constrains what the model is allowed to say.
     </p>
 
-    <article class="work work-featured reveal">
+    <article class="work work-featured">
         <div class="work-status">
             <span class="status-chip">Accepted &middot; BDA 2026</span>
             <span class="status-note">Presented at BITS Pilani Goa. Proceedings forthcoming.</span>
@@ -117,10 +120,20 @@
                 An executable query is not a correct answer, and the gap between those two things is where the
                 domain knowledge has to go.
             </p>
+            <div class="bars" role="img" aria-label="Pooled VM-F1 on AirCypher-150: 0.001 with the schema only, 0.416 with structured domain knowledge.">
+                <div>
+                    <div class="bar-label"><span>Schema only</span><b>0.001</b></div>
+                    <div class="bar-track"><span class="bar-fill low" style="width:0.1%"></span></div>
+                </div>
+                <div>
+                    <div class="bar-label"><span>With domain knowledge</span><b>0.416</b></div>
+                    <div class="bar-track"><span class="bar-fill" style="width:41.6%"></span></div>
+                </div>
+            </div>
         </div>
     </article>
 
-    <article class="work reveal">
+    <article class="work">
         <div class="work-status">
             <span class="status-chip published">Book chapter &middot; 2026</span>
             <span class="status-note">Advances and Trends in Artificial Intelligence, Springer Nature Singapore.</span>
@@ -151,7 +164,7 @@
 
             <!-- Panel: Knowledge Graph -->
             <rect x="20" y="20" width="440" height="440" rx="16" fill="var(--surface)" stroke="var(--border)"></rect>
-            <text x="44" y="52" font-family="var(--font-body)" font-size="12" font-weight="700" letter-spacing="1.2" fill="var(--accent)">KNOWLEDGE GRAPH</text>
+            <text x="44" y="52" font-family="var(--font-body)" font-size="12" font-weight="700" fill="var(--accent)">Knowledge graph</text>
             <text x="44" y="72" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Road segments, linked by how they relate</text>
 
             <!-- Graph edges: spatial (solid) -->
@@ -190,7 +203,7 @@
 
             <!-- Panel: Query Layer -->
             <rect x="480" y="20" width="460" height="440" rx="16" fill="var(--surface)" stroke="var(--border)"></rect>
-            <text x="504" y="52" font-family="var(--font-body)" font-size="12" font-weight="700" letter-spacing="1.2" fill="var(--accent)">QUERY LAYER</text>
+            <text x="504" y="52" font-family="var(--font-body)" font-size="12" font-weight="700" fill="var(--accent)">Query layer</text>
             <text x="504" y="72" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">A question, grounded and answered</text>
 
             <!-- Connector: graph -> question -->
@@ -199,8 +212,8 @@
             <!-- Box A: the question -->
             <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about asking a question" data-detail="A person asks in plain English. No knowledge of Cypher or the graph schema is required — that's the point of the domain-assisted layer that follows.">
                 <rect x="500" y="90" width="290" height="56" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
-                <text x="518" y="112" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">YOU ASK</text>
-                <text x="518" y="134" font-family="var(--font-heading)" font-style="italic" font-size="15" fill="var(--text)">"Where's it congested at 5 PM?"</text>
+                <text x="518" y="112" font-family="var(--font-body)" font-size="10" font-weight="700" fill="var(--text-muted)">You ask</text>
+                <text x="518" y="134" font-family="var(--font-heading)" font-size="15" fill="var(--text)">"Where's it congested at 5 PM?"</text>
             </g>
 
             <!-- Connector: question -> LLM chip -->
@@ -209,7 +222,7 @@
             <!-- Box B: LLM chip -->
             <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about the DKB-assisted LLM" data-detail="The LLM doesn't see the raw graph directly. It sees the question plus a domain knowledge base — schema constraints, traffic-specific rules, and exemplar queries — that keep the generated Cypher valid and grounded.">
                 <rect x="500" y="166" width="290" height="70" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></rect>
-                <text x="518" y="188" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">DKB-ASSISTED LLM</text>
+                <text x="518" y="188" font-family="var(--font-body)" font-size="10" font-weight="700" fill="var(--text-muted)">DKB-assisted LLM</text>
                 <text x="518" y="212" font-family="var(--font-body)" font-size="13" fill="var(--text)">Schema + domain rules ground the</text>
                 <text x="518" y="228" font-family="var(--font-body)" font-size="13" fill="var(--text)">question before it becomes a query.</text>
             </g>
@@ -220,7 +233,7 @@
             <!-- Box C: code panel -->
             <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about the generated Cypher query" data-detail="This is a real, syntactically valid Cypher query — schema-checked before it ever runs, not a free-form guess from the model.">
                 <rect x="500" y="256" width="290" height="100" rx="12" fill="var(--surface-alt)" stroke="var(--border)"></rect>
-                <text x="518" y="278" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--text-muted)">GENERATED CYPHER</text>
+                <text x="518" y="278" font-family="var(--font-body)" font-size="10" font-weight="700" fill="var(--text-muted)">Generated Cypher</text>
                 <text x="518" y="302" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">MATCH</tspan> (s)-[:CONGESTED_AT]-&gt;(t)</text>
                 <text x="518" y="324" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">WHERE</tspan> t.hour = 17</text>
                 <text x="518" y="346" font-family="var(--font-mono)" font-size="13" fill="var(--text)"><tspan fill="var(--accent)" font-weight="600">RETURN</tspan> s.name, t.level</text>
@@ -232,9 +245,9 @@
             <!-- Box D: answer -->
             <g class="kg-hotspot" tabindex="0" role="button" aria-label="Learn about the answer" data-detail="The query runs against the real graph. Every claim in the answer is traceable to an actual node or relationship — not a hallucinated summary.">
                 <rect x="500" y="376" width="290" height="74" rx="12" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"></rect>
-                <text x="518" y="398" font-family="var(--font-body)" font-size="10" font-weight="700" letter-spacing="1" fill="var(--accent)">ANSWER</text>
-                <text x="518" y="421" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">"Segment 27 is congested at 5 PM,</text>
-                <text x="518" y="439" font-family="var(--font-heading)" font-style="italic" font-size="14" fill="var(--text)">based on nearby segments and time."</text>
+                <text x="518" y="398" font-family="var(--font-body)" font-size="10" font-weight="700" fill="var(--accent)">Answer</text>
+                <text x="518" y="421" font-family="var(--font-heading)" font-size="14" fill="var(--text)">"Segment 27 is congested at 5 PM,</text>
+                <text x="518" y="439" font-family="var(--font-heading)" font-size="14" fill="var(--text)">based on nearby segments and time."</text>
             </g>
         </svg>
 
@@ -250,22 +263,22 @@
         </div>
 
         <div class="project-links">
-            <a class="primary" href="https://doi.org/10.1007/978-981-92-2885-0_3" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> Read the paper</a>
-            <a class="secondary" href="https://github.com/arjunpogaku/traffic_kgs" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the code</a>
+            <a class="primary" href="https://doi.org/10.1007/978-981-92-2885-0_3" target="_blank" rel="noopener">Read the paper</a>
+            <a class="secondary" href="https://github.com/arjunpogaku/traffic_kgs" target="_blank" rel="noopener">View the code</a>
         </div>
     </article>
 </section>
 
 <!-- ===== Thread 2 ===== -->
 <section class="thread" id="wireless">
-    <h2 class="section-title reveal">Reconfigurable intelligent surfaces</h2>
-    <p class="thread-lede reveal">
+    <h2 class="section-title">Reconfigurable intelligent surfaces</h2>
+    <p class="thread-lede">
         Earlier work at the WICOM Lab, Asia University, on reconfigurable intelligent surfaces &mdash; surfaces that
         shape a wireless signal rather than merely relaying it. My first-authored contributions surveyed where the
         field stood and analysed how these systems behave once realistic constraints are admitted.
     </p>
 
-    <div class="work-grid reveal">
+    <div class="work-grid">
         <article class="work-compact">
             <span class="status-chip published">Journal &middot; 2022</span>
             <h3>UAV-Assisted RIS for Future Wireless Communications: A Survey on Optimization and Performance Analysis</h3>
@@ -281,18 +294,18 @@
         </article>
     </div>
 
-    <p class="thread-more reveal"><a href="publications.html">See all publications</a></p>
+    <p class="thread-more"><a href="publications.html">See all publications</a></p>
 </section>
 
 </main>
 
 
 <footer>
-    <span>&copy; 2025 Arjun Chakravarthi Pogaku</span>
+    <span>&copy; <span id="year">2026</span> Arjun Chakravarthi Pogaku</span>
     <span><a href="https://orcid.org/0000-0003-2680-6371" target="_blank" rel="noopener">ORCID 0000-0003-2680-6371</a></span>
 </footer>
 
-<script src="script.js?v=92c4bbf43a" defer></script>
+<script src="script.js?v=aacd35b29d" defer></script>
 
 
 <!-- Cloudflare Web Analytics: cookieless, so no consent banner is required.

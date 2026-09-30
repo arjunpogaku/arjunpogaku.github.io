@@ -10,16 +10,17 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Arjun Chakravarthi Pogaku — Researcher">
     <meta property="og:description" content="Researcher in Pattern Mining, Knowledge Graphs & LLMs at the University of Aizu, Japan.">
-    <meta property="og:image" content="https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg">
+    <meta property="og:image" content="https://arjunpogaku.github.io/portrait.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://arjunpogaku.github.io/">
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171334'/%3E%3Ccircle cx='20' cy='22' r='5' fill='%239B8CFA'/%3E%3Ccircle cx='44' cy='18' r='4' fill='%239B8CFA'/%3E%3Ccircle cx='32' cy='44' r='6' fill='%23F2A93B'/%3E%3Cg stroke='%239B8CFA' stroke-width='2' stroke-opacity='0.6'%3E%3Cline x1='20' y1='22' x2='44' y2='18'/%3E%3Cline x1='20' y1='22' x2='32' y2='44'/%3E%3Cline x1='44' y1='18' x2='32' y2='44'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E1B2C'/%3E%3Cg stroke='%238FB0FF' stroke-width='2.5' stroke-opacity='0.7'%3E%3Cline x1='20' y1='22' x2='44' y2='18'/%3E%3Cline x1='20' y1='22' x2='32' y2='44'/%3E%3Cline x1='44' y1='18' x2='32' y2='44'/%3E%3C/g%3E%3Ccircle cx='20' cy='22' r='5' fill='%238FB0FF'/%3E%3Ccircle cx='44' cy='18' r='4' fill='%238FB0FF'/%3E%3Ccircle cx='32' cy='44' r='6' fill='%23FFFFFF'/%3E%3C/svg%3E">
 
+    <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css?v=5b116940d5">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+    <link rel="stylesheet" href="style.css?v=49054b22a0">
 
     <script type="application/ld+json">
     {
@@ -29,7 +30,7 @@
         "name": "Arjun Chakravarthi Pogaku",
         "alternateName": ["Arjun Pogaku", "A. C. Pogaku"],
         "url": "https://arjunpogaku.github.io/",
-        "image": "https://arjunpogaku.github.io/IMG_1242-EDIT(1).jpg",
+        "image": "https://arjunpogaku.github.io/portrait.jpg",
         "jobTitle": "Ph.D. Candidate",
         "affiliation": {
             "@type": "CollegeOrUniversity",
@@ -52,142 +53,231 @@
 </head>
 <body>
 
-<button id="darkModeToggle" type="button" aria-label="Switch to light theme">◑</button>
-
-<header class="masthead">
-    <canvas id="graphCanvas" aria-hidden="true"></canvas>
-    <div class="masthead-inner">
-        <div>
-            <p class="byline">Arjun Chakravarthi Pogaku</p>
-            <h1 class="statement">Making large-scale data explain itself</h1>
-            <p class="positioning">Knowledge graphs, pattern mining, and language models that stay grounded in what is actually true — not just accurate, but answerable.</p>
-            <p class="affiliation"><strong>Ph.D. Candidate</strong>, University of Aizu, Japan</p>
-            <div class="research-links">
-                <a href="https://scholar.google.com/citations?user=VZJc8QoAAAAJ&hl=en" target="_blank" rel="noopener">
-                    <i class="fa-brands fa-google"></i> Google Scholar
-                </a>
-                <a href="https://www.researchgate.net/profile/Arjun_Pogaku2" target="_blank" rel="noopener">
-                    <i class="fab fa-researchgate"></i> ResearchGate
-                </a>
-                <a href="https://github.com/arjunpogaku" target="_blank" rel="noopener">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/arjunpogaku-research" target="_blank" rel="noopener">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:arjun.chakravarthip@gmail.com">
-                    <i class="fa-solid fa-envelope"></i> Email
-                </a>
-            </div>
-        </div>
-        <div class="portrait">
-            <img src="IMG_1242-EDIT(1).jpg" alt="Arjun Chakravarthi Pogaku">
-        </div>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="site-name" href="index.html">Arjun Chakravarthi Pogaku</a>
+        <nav class="site-nav" aria-label="Main">
+            <a href="index.html" aria-current="page">About</a>
+            <a href="research.html">Research</a>
+            <a href="publications.html">Publications</a>
+        </nav>
+        <button id="themeToggle" type="button">Dark mode</button>
     </div>
 </header>
 
-<nav class="site-nav">
-    <div class="site-nav-inner">
-        <a href="index.html" class="active">About</a>
-        <a href="publications.html">Publications</a>
-        <a href="research.html">Research</a>
+<main>
+
+<section class="hero wrap">
+    <div>
+        <h1>Making large-scale data explain itself</h1>
+        <p class="positioning">Knowledge graphs, pattern mining, and language models that stay grounded in what is actually true &mdash; not just accurate, but answerable.</p>
+        <p class="affiliation"><strong>Ph.D. Candidate</strong>, University of Aizu, Japan</p>
+        <ul class="profile-links">
+            <li><a href="https://scholar.google.com/citations?user=VZJc8QoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+            <li><a href="https://www.researchgate.net/profile/Arjun_Pogaku2" target="_blank" rel="noopener">ResearchGate</a></li>
+            <li><a href="https://github.com/arjunpogaku" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/arjunpogaku-research" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:arjun.chakravarthip@gmail.com">Email</a></li>
+        </ul>
     </div>
-</nav>
 
-<main class="wrap">
-
-    <h2 class="section-title reveal">What I work on</h2>
-    <div class="focus-grid reveal">
-        <div class="focus-cell">
-            <span class="glyph"><i class="fa-solid fa-diagram-project"></i></span>
-            <h3>Knowledge graphs</h3>
-            <p>Turning raw spatiotemporal readings into explicit nodes and relationships, so an answer can be traced back to the data that produced it.</p>
+    <div class="ask" id="ask" aria-label="Example: from a question to a graph query">
+        <div class="ask-tabs" role="tablist" aria-label="Example questions">
+            <button type="button" role="tab" aria-selected="true">Air quality</button>
+            <button type="button" role="tab" aria-selected="false">Traffic</button>
+            <button type="button" role="tab" aria-selected="false">Exceedances</button>
         </div>
-        <div class="focus-cell">
-            <span class="glyph"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
-            <h3>Pattern mining</h3>
-            <p>Finding meaningful, uncertain, and time-dependent patterns in large real-world datasets, and the systems work that makes searching them at scale practical.</p>
+        <dl class="ask-body">
+            <div class="ask-step">
+                <dt>Question</dt>
+                <dd class="ask-q">Which stations in Fukushima had the worst air last winter?</dd>
+            </div>
+            <div class="ask-step">
+                <dt>Grounded by</dt>
+                <dd>
+                    <ul class="ask-k">
+                        <li><code>Fukushima</code> means the canonical value prefecture = 'Fukushima'</li>
+                        <li><code>last winter</code> means December to February</li>
+                        <li><code>worst air</code> means highest mean PM2.5</li>
+                    </ul>
+                </dd>
+            </div>
+            <div class="ask-step">
+                <dt>Cypher</dt>
+                <dd><pre class="ask-c"><span class="kw">MATCH</span> (s:Station)-[:RECORDED]-&gt;(o:Observation)
+<span class="kw">WHERE</span> s.prefecture = 'Fukushima'
+  <span class="kw">AND</span> o.month <span class="kw">IN</span> [12, 1, 2]
+<span class="kw">RETURN</span> s.name, avg(o.pm25) <span class="kw">AS</span> mean
+<span class="kw">ORDER BY</span> mean <span class="kw">DESC</span> <span class="kw">LIMIT</span> 5</pre></dd>
+            </div>
+            <div class="ask-step">
+                <dt>Returns</dt>
+                <dd class="ask-r">Five stations ranked by winter mean, each traceable to the hourly observations behind it.</dd>
+            </div>
+        </dl>
+        <p class="ask-note">Illustrative examples with a simplified schema.</p>
+    </div>
+</section>
+
+<div class="now">
+    <p><time datetime="2026-09">September 2026</time>Presented &ldquo;Structured Domain Grounding for Natural-Language Querying of Japan&rsquo;s Large-Scale PM<sub>2.5</sub> Knowledge Graph&rdquo; at BDA 2026, BITS Pilani Goa. Proceedings forthcoming.</p>
+</div>
+
+<div class="wrap">
+
+    <section class="band">
+        <h2>What I work on</h2>
+        <dl class="areas">
+            <div>
+                <dt>Knowledge graphs</dt>
+                <dd>Turning raw spatiotemporal readings into explicit nodes and relationships, so an answer can be traced back to the data that produced it.</dd>
+            </div>
+            <div>
+                <dt>Pattern mining</dt>
+                <dd>Finding meaningful, uncertain, and time-dependent patterns in large real-world datasets, and the systems work that makes searching them at scale practical.</dd>
+            </div>
+            <div>
+                <dt>Grounded language models</dt>
+                <dd>Constraining LLMs with schemas and domain rules so they generate queries and workflows that actually run, instead of plausible guesses.</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="band">
+        <h2>Selected work</h2>
+        <div>
+            <article class="project">
+                <figure>
+                    <div class="bars" role="img" aria-label="Pooled VM-F1 on AirCypher-150: 0.001 with the schema only, 0.416 with structured domain knowledge.">
+                        <div>
+                            <div class="bar-label"><span>Schema only</span><b>0.001</b></div>
+                            <div class="bar-track"><span class="bar-fill low" style="width:0.1%"></span></div>
+                        </div>
+                        <div>
+                            <div class="bar-label"><span>With domain knowledge</span><b>0.416</b></div>
+                            <div class="bar-track"><span class="bar-fill" style="width:41.6%"></span></div>
+                        </div>
+                    </div>
+                    <figcaption>Semantic correctness of generated queries (pooled VM-F1) on AirCypher-150.</figcaption>
+                </figure>
+                <div>
+                    <h3>JPM2KG and AirCypher-150</h3>
+                    <p class="venue">BDA 2026, accepted and presented</p>
+                    <p>A knowledge graph of more than 71 million air-quality observations across 1,116 monitoring stations in Japan, and an execution-validated benchmark of 150 questions for querying it in plain language. Prompting with the schema alone produced queries that ran but were almost never correct; adding structured domain knowledge is what closed the gap.</p>
+                    <p class="more"><a href="research.html#grounding">Read about this work</a></p>
+                </div>
+            </article>
+
+            <article class="project">
+                <figure>
+                    <svg class="mini-graph" viewBox="80 95 370 320" role="img" aria-label="A small graph of road segments coloured by congestion level, joined by spatial and temporal relationships.">
+                        <g stroke="var(--text-muted)" stroke-opacity="0.5" stroke-width="2.5">
+                            <line x1="120" y1="160" x2="270" y2="125"></line>
+                            <line x1="120" y1="160" x2="200" y2="260"></line>
+                            <line x1="200" y1="260" x2="150" y2="345"></line>
+                            <line x1="150" y1="345" x2="290" y2="385"></line>
+                            <line x1="290" y1="385" x2="410" y2="325"></line>
+                            <line x1="200" y1="260" x2="290" y2="385"></line>
+                        </g>
+                        <g stroke="var(--accent)" stroke-opacity="0.7" stroke-width="2.5" stroke-dasharray="6,5">
+                            <line x1="270" y1="125" x2="365" y2="195"></line>
+                            <line x1="200" y1="260" x2="365" y2="195"></line>
+                            <line x1="365" y1="195" x2="410" y2="325"></line>
+                        </g>
+                        <g stroke="var(--surface)" stroke-width="4">
+                            <circle cx="365" cy="195" r="20" fill="var(--flow-congested)"></circle>
+                            <circle cx="120" cy="160" r="15" fill="var(--flow-free)"></circle>
+                            <circle cx="270" cy="125" r="15" fill="var(--flow-moderate)"></circle>
+                            <circle cx="200" cy="260" r="15" fill="var(--flow-free)"></circle>
+                            <circle cx="150" cy="345" r="15" fill="var(--flow-moderate)"></circle>
+                            <circle cx="290" cy="385" r="15" fill="var(--flow-free)"></circle>
+                            <circle cx="410" cy="325" r="15" fill="var(--flow-moderate)"></circle>
+                        </g>
+                    </svg>
+                    <figcaption>Road segments coloured by congestion level. Solid lines are spatial links, dashed lines are temporal.</figcaption>
+                </figure>
+                <div>
+                    <h3>A symbolic knowledge graph for traffic congestion</h3>
+                    <p class="venue">IEA/AIE 2026, Springer Nature</p>
+                    <p>Deterministic rules turn high-frequency congestion readings into a graph of spatial, temporal, and congestion-level relationships, and a domain-constrained LLM generates Cypher directly from a natural-language question &mdash; an interpretable alternative to purely predictive traffic models.</p>
+                    <p class="more"><a href="research.html#grounding">Read about this work</a><a href="https://doi.org/10.1007/978-981-92-2885-0_3" target="_blank" rel="noopener">Paper</a><a href="https://github.com/arjunpogaku/traffic_kgs" target="_blank" rel="noopener">Code</a></p>
+                </div>
+            </article>
         </div>
-        <div class="focus-cell">
-            <span class="glyph"><i class="fa-solid fa-comment-dots"></i></span>
-            <h3>Grounded language models</h3>
-            <p>Constraining LLMs with schemas and domain rules so they generate queries and workflows that actually run, instead of plausible guesses.</p>
+    </section>
+
+    <section class="band">
+        <h2>About</h2>
+        <div class="about">
+            <img src="portrait.jpg" width="480" height="600" alt="Arjun Chakravarthi Pogaku at BDA 2026">
+            <div>
+                <p>I am a researcher working at the intersection of pattern mining, knowledge graphs, and large language models. I was born in 1997 in Madanapalle, Andhra Pradesh, India.</p>
+                <p>I am pursuing my Ph.D. in the Graduate Department of Computer and Information Systems at the University of Aizu, Japan, under the supervision of Dr. Uday Kiran RAGE. My research centers on grounding LLMs in structured, verifiable knowledge. Alongside my own projects, I contribute to research led by colleagues on pattern mining at scale.</p>
+                <p>Before this, I worked on wireless communications and reconfigurable intelligent surfaces (RIS) at the WICOM Lab, Asia University, and served as an Assistant Professor in the Department of Electronics and Communication Engineering at the Madanapalle Institute of Technology and Science (MITS), India.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <h2 class="section-title reveal">Biography</h2>
-    <div class="about-content reveal">
-        <p class="lead">Arjun Chakravarthi Pogaku, born in 1997 in Madanapalle, Andhra Pradesh, India, is a researcher working at the intersection of Pattern Mining, Knowledge Graphs, and Large Language Models.</p>
+    <section class="band">
+        <h2>Path</h2>
+        <ul class="path">
+            <li>
+                <span class="period">2025 &ndash; Present</span>
+                <div><span class="role">Ph.D. in Computer and Information Systems</span><span class="org">University of Aizu, Japan</span></div>
+            </li>
+            <li>
+                <span class="period">Sep 2023 &ndash; Jan 2025</span>
+                <div><span class="role">Assistant Professor, Electronics and Communication Engineering</span><span class="org">Madanapalle Institute of Technology &amp; Science, India</span></div>
+            </li>
+            <li>
+                <span class="period">Oct 2020 &ndash; Jul 2023</span>
+                <div><span class="role">Research Assistant, WICOM Lab</span><span class="org">Department of Computer Science and Information Engineering, Asia University, Taiwan</span></div>
+            </li>
+            <li>
+                <span class="period">2019 &ndash; 2021</span>
+                <div><span class="role">Master of Engineering</span><span class="org">Asia University, Taiwan</span></div>
+            </li>
+            <li>
+                <span class="period">Feb 2019 &ndash; Apr 2019</span>
+                <div><span class="role">Intern</span><span class="org">Department of Bioinformatics and Medical Engineering, Asia University, Taiwan</span></div>
+            </li>
+            <li>
+                <span class="period">2015 &ndash; 2019</span>
+                <div><span class="role">Bachelor of Technology in Electronics and Communication Engineering</span><span class="org">Madanapalle Institute of Technology &amp; Science, India</span></div>
+            </li>
+        </ul>
+    </section>
 
-        <p>He is currently pursuing his Ph.D. in the Graduate Department of Computer and Information Systems at the University of Aizu, Japan, under the supervision of Dr. Uday Kiran RAGE.</p>
-
-        <p>His current research centers on grounding LLMs in structured, verifiable knowledge. He developed a <strong>symbolic knowledge graph framework for traffic congestion analysis</strong>, pairing deterministic graph construction with a domain-constrained LLM that generates Cypher queries directly from natural-language questions &mdash; an interpretable alternative to purely predictive traffic models. He extended that approach to environmental monitoring with <strong>JPM2KG</strong>, a knowledge graph of more than 71 million air-quality observations across Japan, and <strong>AirCypher-150</strong>, an execution-validated benchmark for natural-language querying over it, accepted and presented at BDA 2026. Alongside this he contributes to research led by colleagues on pattern mining at scale.</p>
-
-        <p>Before this, Arjun contributed to research in Wireless Communications and Reconfigurable Intelligent Surfaces (RIS) as part of the WICOM Lab at Asia University, and served as an Assistant Professor in the Department of Electronics and Communication Engineering at the Madanapalle Institute of Technology and Science (MITS), India.</p>
-    </div>
-
-    <h2 class="section-title reveal">Experience</h2>
-    <ul class="timeline reveal">
-        <li>
-            <span class="period">Sep 2023 – Jan 2025</span>
-            <span class="role">Assistant Professor, Electronics and Communication Engineering</span>
-            <span class="org">Madanapalle Institute of Technology &amp; Science</span>
-        </li>
-        <li>
-            <span class="period">Oct 2020 – Jul 2023</span>
-            <span class="role">Research Assistant, WICOM Lab</span>
-            <span class="org">Department of Computer Science and Information Engineering, Asia University, Taiwan</span>
-        </li>
-        <li>
-            <span class="period">Feb 2019 – Apr 2019</span>
-            <span class="role">Intern</span>
-            <span class="org">Department of Bioinformatics and Medical Engineering, Asia University, Taiwan</span>
-        </li>
-    </ul>
-
-    <h2 class="section-title reveal">Education</h2>
-    <ul class="timeline reveal">
-        <li>
-            <span class="period">2025 – Present</span>
-            <span class="role">Ph.D. in Computer and Information Systems</span>
-            <span class="org">University of Aizu, Japan</span>
-        </li>
-        <li>
-            <span class="period">2019 – 2021</span>
-            <span class="role">Master of Engineering</span>
-            <span class="org">Asia University, Taiwan</span>
-        </li>
-        <li>
-            <span class="period">2015 – 2019</span>
-            <span class="role">Bachelor of Technology in Electronics and Communication Engineering</span>
-            <span class="org">Madanapalle Institute of Technology &amp; Science, India</span>
-        </li>
-    </ul>
-
-    <h2 class="section-title reveal">From LinkedIn</h2>
-    <div class="linkedin-posts reveal">
-        <!-- Newest first. Post IDs grow over time, so the larger ID is the newer post. -->
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7507796204660101120" height="1006" width="504" frameborder="0" allowfullscreen="" loading="lazy" title="LinkedIn post by Arjun Chakravarthi Pogaku"></iframe>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7480842111966265344" height="1048" width="504" frameborder="0" allowfullscreen="" loading="lazy" title="LinkedIn post by Arjun Chakravarthi Pogaku"></iframe>
-    </div>
-
-    <h2 class="section-title reveal">Get in touch</h2>
-    <div class="contact-band reveal">
-        <p>If you are working on knowledge graphs, pattern mining, or grounding language models in real data, I would like to hear about it.</p>
-        <div class="project-links">
-            <a class="primary" href="mailto:arjun.chakravarthip@gmail.com"><i class="fa-solid fa-envelope"></i> Email me</a>
-            <a class="secondary" href="research.html"><i class="fa-solid fa-diagram-project"></i> See the research</a>
+    <section class="band">
+        <h2>Recent posts</h2>
+        <div class="linkedin-posts">
+            <!-- Newest first. Post IDs grow over time, so the larger ID is the newer post. -->
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7507796204660101120" height="1006" width="504" frameborder="0" allowfullscreen="" loading="lazy" title="LinkedIn post by Arjun Chakravarthi Pogaku"></iframe>
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7480842111966265344" height="1048" width="504" frameborder="0" allowfullscreen="" loading="lazy" title="LinkedIn post by Arjun Chakravarthi Pogaku"></iframe>
         </div>
-    </div>
+    </section>
+
+    <section class="band band-last">
+        <h2>Get in touch</h2>
+        <div class="contact">
+            <p>If you are working on knowledge graphs, pattern mining, or grounding language models in real data, I would like to hear about it.</p>
+            <div class="project-links">
+                <a class="primary" href="mailto:arjun.chakravarthip@gmail.com">Email me</a>
+                <a class="secondary" href="research.html">See the research</a>
+            </div>
+        </div>
+    </section>
+
+</div>
 
 </main>
 
 <footer>
-    <span>&copy; 2025 Arjun Chakravarthi Pogaku</span>
+    <span>&copy; <span id="year">2026</span> Arjun Chakravarthi Pogaku</span>
     <span><a href="https://orcid.org/0000-0003-2680-6371" target="_blank" rel="noopener">ORCID 0000-0003-2680-6371</a></span>
 </footer>
 
-<script src="script.js?v=92c4bbf43a" defer></script>
+<script src="script.js?v=aacd35b29d" defer></script>
 
 
 <!-- Cloudflare Web Analytics: cookieless, so no consent banner is required.
