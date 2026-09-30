@@ -31,6 +31,144 @@ const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').mat
     label();
 })();
 
+// ===== Background field =====
+// A grid of points, slightly off-grid so it reads as scattered stations
+// rather than graph paper. Points within reach of the pointer brighten and
+// link to their neighbours. It only redraws while something is changing.
+(function backgroundField() {
+    const canvas = document.getElementById('fieldCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const SPACING = 46;
+    const REACH = 170;
+
+    let w = 0, h = 0, cols = 0, rows = 0;
+    let points = [];
+    let colors = { dot: '#526077', hot: '#1F4FD8' };
+    let raf = null;
+    const pointer = { x: -9999, y: -9999 };
+
+    // Stable pseudo-random offset per grid cell, so a resize does not
+    // reshuffle the field.
+    function jitter(c, r, salt) {
+        const n = Math.sin(c * 127.1 + r * 311.7 + salt * 74.7) * 43758.5453;
+        return (n - Math.floor(n) - 0.5) * SPACING * 0.5;
+    }
+
+    function readColors() {
+        const s = getComputedStyle(document.documentElement);
+        colors = {
+            dot: s.getPropertyValue('--text-muted').trim() || colors.dot,
+            hot: s.getPropertyValue('--accent').trim() || colors.hot
+        };
+    }
+
+    function build() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        cols = Math.ceil(w / SPACING) + 2;
+        rows = Math.ceil(h / SPACING) + 2;
+        const previous = points;
+        points = [];
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const old = previous[r * cols + c];
+                points.push({
+                    x: (c - 0.5) * SPACING + jitter(c, r, 1),
+                    y: (r - 0.5) * SPACING + jitter(c, r, 2),
+                    heat: old ? old.heat : 0
+                });
+            }
+        }
+    }
+
+    function link(a, b) {
+        const strength = Math.min(a.heat, b.heat);
+        if (strength < 0.04) return;
+        ctx.globalAlpha = strength * 0.55;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+    }
+
+    function draw() {
+        raf = null;
+        let active = false;
+
+        // Ease each point toward how close the pointer is to it.
+        points.forEach(p => {
+            const d = Math.hypot(p.x - pointer.x, p.y - pointer.y);
+            const target = d < REACH ? Math.pow(1 - d / REACH, 1.5) : 0;
+            p.heat = REDUCED_MOTION ? target : p.heat + (target - p.heat) * 0.16;
+            if (Math.abs(target - p.heat) > 0.004) active = true;
+            else p.heat = target;
+        });
+
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.strokeStyle = colors.hot;
+        ctx.lineWidth = 1;
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const p = points[r * cols + c];
+                if (p.heat < 0.04) continue;
+                if (c + 1 < cols) link(p, points[r * cols + c + 1]);
+                if (r + 1 < rows) link(p, points[(r + 1) * cols + c]);
+                // One diagonal per cell, alternating, so the links read as
+                // a graph and not as a square mesh.
+                if (r + 1 < rows && (r + c) % 2 === 0 && c + 1 < cols) link(p, points[(r + 1) * cols + c + 1]);
+                if (r + 1 < rows && (r + c) % 2 === 1 && c > 0) link(p, points[(r + 1) * cols + c - 1]);
+            }
+        }
+
+        points.forEach(p => {
+            ctx.globalAlpha = 0.22 + p.heat * 0.78;
+            ctx.fillStyle = p.heat > 0.04 ? colors.hot : colors.dot;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1.1 + p.heat * 2.2, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+
+        if (active) schedule();
+    }
+
+    function schedule() {
+        if (!raf) raf = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('pointermove', (e) => {
+        if (e.pointerType === 'touch') return;
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        schedule();
+    }, { passive: true });
+
+    document.documentElement.addEventListener('pointerleave', () => {
+        pointer.x = pointer.y = -9999;
+        schedule();
+    });
+
+    window.addEventListener('resize', () => { build(); schedule(); });
+
+    // Repaint in the new colours whenever the theme changes.
+    const repaint = () => { readColors(); schedule(); };
+    new MutationObserver(repaint).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', repaint);
+
+    readColors();
+    build();
+    schedule();
+})();
+
 (function footerYear() {
     const el = document.getElementById('year');
     if (el) el.textContent = String(new Date().getFullYear());
