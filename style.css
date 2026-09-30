@@ -139,18 +139,6 @@ a:hover { text-decoration-thickness: 2px; }
     border-radius: 3px;
 }
 
-/* ===== Background field =====
-   A faint grid of points behind every page. Points near the pointer light
-   up and link to their neighbours, like a graph forming around the cursor. */
-#fieldCanvas {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
 /* ===== Top bar: the same on every page ===== */
 .topbar {
     position: sticky;
@@ -225,15 +213,48 @@ a:hover { text-decoration-thickness: 2px; }
 
 #themeToggle:hover { color: var(--text); border-color: var(--text-muted); }
 
-/* ===== Home hero ===== */
+/* ===== Home hero =====
+   A full-width ink band in both themes, so the live graph behind the
+   content reads as lit nodes on a dark field. */
+.hero-band {
+    position: relative;
+    overflow: hidden;
+    background-color: #0A1422;
+    color: var(--panel-text);
+    border-bottom: 1px solid var(--panel-border);
+}
+
+#heroCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.hero-band h1 { color: #FFFFFF; text-shadow: 0 2px 24px #0A1422; }
+
+.hero-band .positioning { color: #B4C0D2; text-shadow: 0 1px 12px #0A1422; }
+
+.hero-band a { color: var(--panel-accent); }
+
+.hero-band .ask {
+    background-color: rgba(14, 24, 40, 0.82);
+    backdrop-filter: blur(6px);
+}
+
 .hero {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: 56px;
     align-items: center;
-    padding-top: 72px;
-    padding-bottom: 72px;
+    padding-top: 112px;
+    padding-bottom: 112px;
+    pointer-events: none;
 }
+
+.hero > * { pointer-events: auto; }
 
 .hero h1 {
     margin: 0 0 20px;
@@ -382,7 +403,6 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ===== Now strip ===== */
 .now {
-    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background-color: var(--surface);
 }
@@ -1033,6 +1053,9 @@ footer a { color: var(--text-muted); }
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; padding-bottom: 48px; }
+
+    /* Stacked, the content covers most of the band, so the graph steps back. */
+    #heroCanvas { opacity: 0.4; }
 
     .band { grid-template-columns: 1fr; gap: 18px; padding-top: 52px; }
 
