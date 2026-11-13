@@ -416,6 +416,8 @@ a:hover { text-decoration-thickness: 2px; }
 
 .now time { font-weight: 600; margin-right: 10px; }
 
+.now p + p { padding-top: 0; margin-top: -4px; }
+
 /* ===== Home sections: heading in a left rail, content beside it ===== */
 .band {
     display: grid;
@@ -453,6 +455,58 @@ a:hover { text-decoration-thickness: 2px; }
     font-size: 0.94rem;
     color: var(--text-muted);
 }
+
+/* Knowledge graphs and benchmarks: one collection, with its releases listed. */
+.resource { display: flex; gap: 16px; align-items: flex-start; max-width: 760px; }
+
+.resource > img { flex: none; width: 56px; height: 56px; border-radius: 13px; }
+
+.resource h3 { margin: 2px 0 6px; font-size: 1.08rem; }
+
+.resource h3 a { color: var(--text); text-decoration: none; }
+
+.resource h3 a:hover { color: var(--accent); }
+
+.resource p { margin: 0 0 12px; font-size: 0.94rem; color: var(--text-muted); }
+
+.resource-list { list-style: none; margin: 0; padding: 0; }
+
+.resource-list li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 14px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.92rem;
+}
+
+.resource-list li > a, .resource-name { font-weight: 600; min-width: 190px; }
+
+.resource-list li > span:last-child { color: var(--text-muted); }
+
+/* Software: the project logos with a one-line description each. */
+.software {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 28px 36px;
+}
+
+.software li { display: flex; gap: 16px; align-items: flex-start; }
+
+.software img { flex: none; width: 56px; height: 56px; border-radius: 13px; }
+
+.software h3 { margin: 2px 0 6px; font-size: 1.08rem; }
+
+.software h3 a { color: var(--text); text-decoration: none; }
+
+.software h3 a:hover { color: var(--accent); }
+
+.software p { margin: 0; font-size: 0.94rem; color: var(--text-muted); }
+
+.software p a { display: block; width: fit-content; margin-top: 6px; font-size: 0.88rem; }
 
 /* Selected work: each project leads with a figure from the paper. */
 .project {

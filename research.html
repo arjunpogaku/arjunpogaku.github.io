@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-    <link rel="stylesheet" href="style.css?v=fd27fed1c9">
+    <link rel="stylesheet" href="style.css?v=168bac0b88">
 
     <script type="application/ld+json">
     {
@@ -128,6 +128,75 @@
                 <div>
                     <div class="bar-label"><span>With domain knowledge</span><b>0.416</b></div>
                     <div class="bar-track"><span class="bar-fill" style="width:41.6%"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-links">
+            <a class="secondary" href="https://github.com/aircypher/jpm2kg" target="_blank" rel="noopener">View the code and data</a>
+        </div>
+    </article>
+
+    <article class="work work-featured" id="aircypher-jp">
+        <div class="work-status">
+            <span class="status-chip">Accepted &middot; IEEE BigData 2026</span>
+            <span class="status-note">Phoenix, Arizona. To appear.</span>
+        </div>
+
+        <h3>Auditing Execution Accuracy: Measurement Reliability in Text-to-Cypher Evaluation over 110 Million Observations</h3>
+
+        <p class="work-authors"><strong>Arjun Chakravarthi Pogaku</strong>, Uday Kiran Rage</p>
+
+        <p>
+            Text-to-Cypher papers usually report one number: how often the model&rsquo;s query returns the same result
+            as a reference query. This work asks how much of that number comes from the models and how much from the
+            evaluation pipeline itself &mdash; the reference queries, the prompt, how the query is pulled out of the
+            model&rsquo;s reply, and how two results are compared.
+        </p>
+
+        <p>
+            The paper introduces <strong>AirCypher-JP</strong>, a benchmark of 4,000 English questions paired with
+            Cypher over JAPAQ-KG, a knowledge graph of 110 million hourly air-quality observations from Japan. Twelve
+            language models under six prompt configurations are evaluated on the 799 test questions, and every one of
+            the 57,528 predictions is kept, so each reported number can be recomputed.
+        </p>
+
+        <div class="stat-row">
+            <div class="stat">
+                <span class="stat-value">4,000</span>
+                <span class="stat-label">question and query pairs</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">57,528</span>
+                <span class="stat-label">stored model predictions</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">8,794</span>
+                <span class="stat-label">human review judgements</span>
+            </div>
+        </div>
+
+        <div class="finding">
+            <p class="finding-head">The evaluator moves the score</p>
+            <p>
+                Many reference queries sort and keep the top rows without saying how to break ties. Making
+                <strong>480</strong> of them break ties explicitly changed <strong>256</strong> verdicts. Across 66
+                model-and-prompt combinations, <strong>51</strong> scored lower, 15 were unchanged and
+                none scored higher. A benchmark score is a measurement, and the measuring pipeline needs auditing as
+                much as the models do.
+            </p>
+            <div class="bars" role="img" aria-label="After the tie-break repair, 51 of 66 cells scored lower, 15 were unchanged and none scored higher.">
+                <div>
+                    <div class="bar-label"><span>Scored lower</span><b>51</b></div>
+                    <div class="bar-track"><span class="bar-fill" style="width:77.3%"></span></div>
+                </div>
+                <div>
+                    <div class="bar-label"><span>Unchanged</span><b>15</b></div>
+                    <div class="bar-track"><span class="bar-fill low" style="width:22.7%"></span></div>
+                </div>
+                <div>
+                    <div class="bar-label"><span>Scored higher</span><b>0</b></div>
+                    <div class="bar-track"><span class="bar-fill low" style="width:0.1%"></span></div>
                 </div>
             </div>
         </div>

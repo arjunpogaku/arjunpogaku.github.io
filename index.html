@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-    <link rel="stylesheet" href="style.css?v=fd27fed1c9">
+    <link rel="stylesheet" href="style.css?v=168bac0b88">
 
     <script type="application/ld+json">
     {
@@ -123,6 +123,7 @@
 </section>
 
 <div class="now">
+    <p><time datetime="2026-10">October 2026</time>&ldquo;Auditing Execution Accuracy: Measurement Reliability in Text-to-Cypher Evaluation over 110 Million Observations&rdquo; accepted at IEEE BigData 2026, Phoenix, Arizona.</p>
     <p><time datetime="2026-09">September 2026</time>Presented &ldquo;Structured Domain Grounding for Natural-Language Querying of Japan&rsquo;s Large-Scale PM<sub>2.5</sub> Knowledge Graph&rdquo; at BDA 2026, BITS Pilani Goa. Proceedings forthcoming.</p>
 </div>
 
@@ -151,6 +152,32 @@
         <div>
             <article class="project">
                 <figure>
+                    <div class="bars" role="img" aria-label="After 480 reference queries were repaired for tie-breaks, 51 of 66 model and configuration cells scored lower, 15 were unchanged and none scored higher.">
+                        <div>
+                            <div class="bar-label"><span>Cells that scored lower</span><b>51</b></div>
+                            <div class="bar-track"><span class="bar-fill" style="width:77.3%"></span></div>
+                        </div>
+                        <div>
+                            <div class="bar-label"><span>Unchanged</span><b>15</b></div>
+                            <div class="bar-track"><span class="bar-fill low" style="width:22.7%"></span></div>
+                        </div>
+                        <div>
+                            <div class="bar-label"><span>Scored higher</span><b>0</b></div>
+                            <div class="bar-track"><span class="bar-fill low" style="width:0.1%"></span></div>
+                        </div>
+                    </div>
+                    <figcaption>Model and prompt combinations (66 cells) after repairing tie-breaks in 480 reference queries.</figcaption>
+                </figure>
+                <div>
+                    <h3>AirCypher-JP: auditing execution accuracy</h3>
+                    <p class="venue">IEEE BigData 2026, accepted</p>
+                    <p>A benchmark of 4,000 English questions paired with Cypher over a knowledge graph of 110 million air-quality observations, and 57,528 stored predictions from 12 language models. The paper shows that the evaluation pipeline itself moves the scores: making 480 reference queries break ties explicitly lowered 51 of 66 model-and-prompt scores and raised none.</p>
+                    <p class="more"><a href="research.html#aircypher-jp">Read about this work</a></p>
+                </div>
+            </article>
+
+            <article class="project">
+                <figure>
                     <div class="bars" role="img" aria-label="Pooled VM-F1 on AirCypher-150: 0.001 with the schema only, 0.416 with structured domain knowledge.">
                         <div>
                             <div class="bar-label"><span>Schema only</span><b>0.001</b></div>
@@ -167,7 +194,7 @@
                     <h3>JPM2KG and AirCypher-150</h3>
                     <p class="venue">BDA 2026, accepted and presented</p>
                     <p>A knowledge graph of more than 71 million air-quality observations across 1,116 monitoring stations in Japan, and an execution-validated benchmark of 150 questions for querying it in plain language. Prompting with the schema alone produced queries that ran but were almost never correct; adding structured domain knowledge is what closed the gap.</p>
-                    <p class="more"><a href="research.html#grounding">Read about this work</a></p>
+                    <p class="more"><a href="research.html#grounding">Read about this work</a><a href="https://github.com/aircypher/jpm2kg" target="_blank" rel="noopener">Code</a></p>
                 </div>
             </article>
 
@@ -207,6 +234,41 @@
                 </div>
             </article>
         </div>
+    </section>
+
+    <section class="band">
+        <h2>Knowledge graphs and benchmarks</h2>
+        <div class="resource">
+            <img src="logos/aircypher.png" width="56" height="56" alt="" loading="lazy">
+            <div>
+                <h3><a href="https://github.com/aircypher" target="_blank" rel="noopener">AirCypher</a></h3>
+                <p>Knowledge graphs built from Japan&rsquo;s national air-quality monitoring network, and benchmarks for asking those graphs questions in plain English. Each release is the reproducibility package for a paper.</p>
+                <ul class="resource-list">
+                    <li><a href="https://github.com/aircypher/jpm2kg" target="_blank" rel="noopener">JPM2KG &amp; AirCypher-150</a><span>PM<sub>2.5</sub> knowledge graph, 150-question benchmark &middot; BDA 2026 &middot; public</span></li>
+                    <li><span class="resource-name">AirCypher-JP</span><span>4,000-question text-to-Cypher benchmark &middot; IEEE BigData 2026 &middot; release with the paper</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="band">
+        <h2>Software</h2>
+        <ul class="software">
+            <li>
+                <img src="logos/quillbench.png" width="56" height="56" alt="" loading="lazy">
+                <div>
+                    <h3><a href="https://github.com/quillbench/quillbench" target="_blank" rel="noopener">QuillBench</a></h3>
+                    <p>A config-driven annotation platform for building benchmark datasets with human annotators. <a href="https://pypi.org/project/quillbench/" target="_blank" rel="noopener">Install from PyPI</a></p>
+                </div>
+            </li>
+            <li>
+                <img src="logos/quireloop.png" width="56" height="56" alt="" loading="lazy">
+                <div>
+                    <h3><a href="https://github.com/quireloop/quireloop" target="_blank" rel="noopener">Quireloop</a></h3>
+                    <p>A self-hosted, collaborative LaTeX editor for research groups. <a href="https://pypi.org/project/quireloop/" target="_blank" rel="noopener">Install from PyPI</a></p>
+                </div>
+            </li>
+        </ul>
     </section>
 
     <section class="band">
